@@ -1,0 +1,10 @@
+Indicator.lo: Indicator.cxx /usr/include/stdc-predef.h \
+ scintilla/include/Platform.h scintilla/include/Scintilla.h Indicator.h
+
+/usr/include/stdc-predef.h:
+
+scintilla/include/Platform.h:
+
+scintilla/include/Scintilla.h:
+
+Indicator.h:

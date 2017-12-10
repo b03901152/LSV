@@ -1,0 +1,10 @@
+-- merge1.balsa: unbuffered Merge
+import [balsa.types.basic]
+procedure merge (input a, b : byte; output c : byte) is
+begin
+ loop
+ select a then c <- a -- channel behaves like a variable
+ | b then c <- b -- ditto
+ end -- select a
+ end -- loop
+end -- procedure merge

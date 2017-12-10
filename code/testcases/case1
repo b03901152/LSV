@@ -1,0 +1,1 @@
+bugfind testcase/golden/c17_G.blif testcase/faulty/c17_F.blif

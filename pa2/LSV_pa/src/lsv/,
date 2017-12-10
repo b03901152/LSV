@@ -1,0 +1,473 @@
+/**CFile****************************************************************
+
+  FileName    [lsvCmd.cpp]
+
+  SystemName  [ABC: Logic synthesis and verification
+system.]
+
+  PackageName [lsv: Logic Synthesis and Verification PA.]
+
+  Synopsis    [command file.]
+
+  Author      [Nian-Ze Lee]
+
+  Affiliation [NTU]
+
+  Date        [17, Sep., 2017.]
+
+***********************************************************************/
+
+////////////////////////////////////////////////////////////////////////
+///                          INCLUDES ///
+////////////////////////////////////////////////////////////////////////
+
+#include <iostream>
+#include <map>
+#include <vector>
+#include "aig/aig/aig.h"
+#include "base/abc/abc.h"
+#include "base/main/mainInt.h"
+#include "sat/cnf/cnf.h"
+
+#include <limits.h>
+#include <iostream>
+using namespace std;
+
+ABC_NAMESPACE_IMPL_START
+
+////////////////////////////////////////////////////////////////////////
+///                        DECLARATIONS ///
+////////////////////////////////////////////////////////////////////////
+
+// export to mainInit.c
+extern "C" void Lsv_Init(Abc_Frame_t *);
+extern "C" void Lsv_End(Abc_Frame_t *);
+
+// command functions
+static int Abc_CommandMajFind(Abc_Frame_t *, int, char **);
+
+// external functions defined in lsv package
+extern void Lsv_NtkMajFind(Abc_Ntk_t *);
+extern void Lsv_Ntk1SubFind(Abc_Frame_t *, Abc_Ntk_t *);
+extern int Abc_Command1SubFind(Abc_Frame_t *, int, char **);
+
+extern "C" Aig_Man_t *Abc_NtkToDar(Abc_Ntk_t *pNtk, int fExors,
+                                   int fRegisters);
+extern "C" void Abc_NtkCecSat(Abc_Ntk_t *pNtk1, Abc_Ntk_t *_pNtkNew,
+                              int nConfLimit, int nInsLimit);
+extern "C" Vec_Ptr_t *Abc_NtkDfs(Abc_Ntk_t *pNtk, int fCollectAll);
+extern "C" word Aig_ManRandom64(int fReset);
+extern "C" void Abc_NtkVerifyReportError(Abc_Ntk_t *pNtk1,
+                                         Abc_Ntk_t *_pNtkNew, int *pModel);
+extern "C" Abc_Ntk_t *Abc_NtkMulti(Abc_Ntk_t *pNtk, int nThresh,
+                                   int nFaninMax, int fCnf, int fMulti,
+                                   int fSimple, int fFactor);
+extern "C" Abc_Obj_t *Abc_ObjFanin0(Abc_Obj_t *pObj);
+extern "C" Abc_Obj_t *Abc_ObjFanin1(Abc_Obj_t *pObj);
+
+class OneSubFind {
+ public:
+  OneSubFind(Abc_Frame_t *pAbc, Abc_Ntk_t *pNtk) {
+    _pAbc = pAbc;
+    _pNtk = pNtk;
+    _pSat = sat_solver_new();
+    _var = Abc_NtkObjNum(pNtk);
+  }
+  void init();
+  void solve();
+
+ private:
+  // assert(Abc_NtkNumFanouts)
+  // obj->Id == var
+  int ctrlVar(int var) { return Abc_NtkNodeNum(_pNtk); }
+  void propagate(Abc_Obj_t *pObj);
+  bool sim(Abc_Obj_t *pOld, Abc_Obj_t *pNew);
+  bool sat(Abc_Obj_t *pOld, Abc_Obj_t *pNew);
+  void disableObj(int var);
+  void enableObj(int var);
+  bool addAndGateClause(int input0, int input1, int output,
+                        vector<int> auxiliaryLits = vector<int>());
+  bool addOrGateClause(int input0, int input1, int output,
+                       vector<int> auxiliaryLits = vector<int>());
+  bool addXorGateClause(int input0, int input1, int output,
+                        vector<int> auxiliaryLits = vector<int>());
+  int getVar() { return ++_var; }
+
+  Abc_Frame_t *_pAbc;
+  vector<Abc_Obj_t *> _updateObjs;
+  Abc_Ntk_t *_pNtk;
+  sat_solver *_pSat;
+  int _var;
+  vector<int> _ctrlLits;  // lit_sign (_ctrlLit[var]) = true, disable the
+                          // gate[var] with its fanouts
+};
+
+void OneSubFind::init() {
+  // Abc_Obj_t *pObj, *pFanin;
+  // int i;
+  // Abc_NtkForEachObj(_pNtk, pObj, i) pObj->fMarkA = false;
+
+  // Abc_NtkForEachPi(_pNtk, pObj, i) {
+  //   pObj->iData = (int)Aig_ManRandom64(0);
+  //   pObj->fMarkA = true;
+  // }
+  // Abc_NtkForEachPo(_pNtk, pObj, i) {
+  //   assert(Abc_ObjFaninNum(pObj) == 1);
+  //   propagate(pObj);
+  //   pObj->iTemp = pObj->iData;
+  // }
+  // for (i = 0; i < _updateObjs.size(); ++i) _updateObjs[i]->fMarkA =
+  // false;
+  // _updateObjs.clear();
+}
+
+void OneSubFind::solve() {
+  // int i, j;
+  // Abc_Obj_t *pOld, *pNew;
+  // Abc_NtkForEachObj(_pNtk, pOld, i) Abc_NtkForEachObj(_pNtk, pNew, j) {
+  //   if (Abc_ObjIsPo(pObj1) || Abc_ObjIsPo(pObj1)) continue;
+  //   assert(!Abc_ObjIsPo(pObj));
+  //   if (i == j) continue;
+  //   if (sim(pOld, pNew)) sat(i, j);
+  // }
+}
+
+void OneSubFind::propagate(Abc_Obj_t *pObj) {
+  // if (pObj->fMarkA) return;
+  // if (Abc_ObjIsPo(pObj)) {
+  //   pObj->iData = Abc_ObjFanin0(pObj)->iData;
+  //   return;
+  // }
+  // _updateObjs.push_back(pObj);
+  // if (!Abc_ObjFanin0(pObj)->fMarkA) propagate(Abc_ObjFanin0(pObj));
+  // if (!Abc_ObjFanin1(pObj)->fMarkA) propagate(Abc_ObjFanin1(pObj));
+  // int input0 = Abc_ObjFanin0(pObj)->iData;
+  // int input1 = Abc_ObjFanin1(pObj)->iData;
+  // if (Abc_ObjFaninC0(pObj)) input0 = ~input0;
+  // if (Abc_ObjFaninC1(pObj)) input1 = ~input1;
+  // pObj->iData = input0 & input1;
+  // pObj->fMarkA = true;
+  // Abc_Obj_t *pFanout;
+  // int i;
+  // Abc_ObjForEachFanout(pObj, pFanout, i) propagate(pFanout);
+}
+
+bool OneSubFind::sim(Abc_Obj_t *pOld, Abc_Obj_t *pNew) {
+  return 0;
+  // Abc_Obj_t *pFanout, *pPo;
+  // int i;
+
+  // Vec_Ptr_t *oldFanouts = pOld->vFanouts;
+  // Vec_Ptr_t *newFanouts = pNew->vFanouts;
+  // Vec_Ptr_t *totalFanouts =
+  //     Vec_PtrStart(oldFanouts->nSize + newFanouts->nSize);
+  // Vec_Ptr_t *nullVec = Vec_PtrStart(0);
+
+  // Abc_ObjForEachFanout(pOld, pFanout, i)
+  //     Vec_PtrPush(totalFanouts, pFanout);
+  // Abc_ObjForEachFanout(pNew, pFanout, i)
+  //     Vec_PtrPush(totalFanouts, pFanout);
+
+  // pNew->vFanouts = totalFanouts;
+  // pOld = nullVec;
+  // Abc_ObjTransferFanout(pOld, pNew);
+  // propagate(pNew);
+  // bool rtn = true;
+  // Abc_NtkForEachPo(_pNtk, pPo, i) {
+  //   if (pPo->iData != pPo->iTemp) {
+  //     rtn = false;
+  //     break;
+  //   }
+  // }
+
+  // pNew->vFanouts = oldFanouts;
+  // Abc_ObjTransferFanout(pNew, pOld);
+  // pNew->vFanouts = newFanouts;
+  // pOld->vFanouts = oldFanouts;
+  // Vec_PtrFree(totalFanouts);
+  // Vec_PtrFree(nullVec);
+  // return rtn;
+}
+
+bool OneSubFind::sat(Abc_Obj_t *pOld, Abc_Obj_t *pNew) {
+  return 1;
+  // disableObj(oldObj);
+  // int var = getVar();
+  // Abc_Obj_t *pObj, *pFanout, *pAnotherFanin;
+  // int i;
+  // Abc_ObjForEachFanout(pObj, pFanout, i) {
+  //   if (Abc_ObjFanin0(pFanout) == pObj)
+  //     pAnotherFanin = Abc_ObjFanin1(pFanout);
+  //   else
+  //     pAnotherFanin = Abc_ObjFanin0(pFanout);
+  //   addAndGateClause();
+  // }
+  // enableObj(oldObj);
+}
+
+void Lsv_Init(Abc_Frame_t *pAbc) {
+  Cmd_CommandAdd(pAbc, "z LSV", "MAJ_find", Abc_CommandMajFind, 0);
+  Cmd_CommandAdd(pAbc, "z LSV", "1subfind", Abc_Command1SubFind, 0);
+}
+
+void Lsv_End(Abc_Frame_t *pAbc) {}
+
+int Abc_Command1SubFind(Abc_Frame_t *pAbc, int argc, char **argv) {
+  // int fCheck = 1;
+  // int util_optind = 0;
+  // Abc_Ntk_t *pNtk = Io_Read(argv[1], Io_ReadFileType(argv[1]), fCheck,
+  // 0);
+  // if (!pNtk) {
+  //   cerr << "pNtk is NULL\n";
+  //   return 1;
+  // }
+  // if (!Abc_NtkIsStrash(pNtk)) pNtk = Abc_NtkStrash(pNtk, 0, 1, 0);
+  // OneSubFind oneSubFind(pAbc, pNtk);
+  // cerr << "Abc_Command1SubFind\n";
+  // int i;
+  // Abc_Obj_t *pObj;
+  // Abc_NtkForEachObj(pNtk, pObj, i) {
+  //   cerr << "i " << i << endl;
+  //   cerr << "obj " << pObj->Id << endl;
+  //   cerr << "Abc_ObjIsPi(pObj) " << Abc_ObjIsPi(pObj) << endl;
+  //   cerr << "Abc_ObjIsPo(pObj) " << Abc_ObjIsPo(pObj) << endl;
+  //   cerr << "Abc_ObjIsBi(pObj) " << Abc_ObjIsBi(pObj) << endl;
+  //   cerr << "Abc_ObjIsBo(pObj) " << Abc_ObjIsBo(pObj) << endl;
+  //   cerr << "Abc_ObjIsCi(pObj) " << Abc_ObjIsCi(pObj) << endl;
+  //   cerr << "Abc_ObjIsCo(pObj) " << Abc_ObjIsCo(pObj) << endl;
+  //   cerr << "Abc_ObjIsTerm(pObj) " << Abc_ObjIsTerm(pObj) << endl;
+  //   cerr << "Abc_ObjIsNet(pObj) " << Abc_ObjIsNet(pObj) << endl;
+  //   cerr << "Abc_ObjIsNode(pObj) " << Abc_ObjIsNode(pObj) << endl;
+  //   cerr << "Abc_ObjIsLatch(pObj) " << Abc_ObjIsLatch(pObj) << endl;
+  //   cerr << "Abc_ObjIsBox(pObj) " << Abc_ObjIsBox(pObj) << endl;
+  //   cerr << "Abc_ObjIsWhitebox(pObj) " << Abc_ObjIsWhitebox(pObj) <<
+  //   endl;
+  //   cerr << "Abc_ObjIsBlackbox(pObj) " << Abc_ObjIsBlackbox(pObj) <<
+  //   endl;
+  //   cerr << "Abc_ObjIsBarBuf(pObj) " << Abc_ObjIsBarBuf(pObj) << endl;
+  //   cin.get();
+  // }
+  // Abc_NtkForEachNode(pNtk, pObj, i) {
+  //   cerr << "node " << pObj->Id << endl;
+  // }
+  // Abc_NtkForEachPo(pNtk, pObj, i) { cerr << "Po " << pObj->Id << endl; }
+  // Abc_NtkForEachPi(pNtk, pObj, i) { cerr << "Pi " << pObj->Id << endl; }
+
+  // oneSubFind.init();
+  // oneSubFind.solve();
+  return 0;
+}
+
+bool OneSubFind::addXorGateClause(int input0, int input1, int output,
+                                  vector<int> auxiliaryLits) {
+  // if (auxiliaryLits.empty()) {
+  //   auxiliaryLits.push_back(ctrlVar(input0));
+  //   auxiliaryLits.push_back(ctrlVar(input1));
+  // }
+
+  // vector<vector<int>> clauses(2);
+  // clauses[0].push_back(lit_neg(input0));
+  // clauses[0].push_back(lit_neg(input1));
+
+  // clauses[1].push_back(input0);
+  // clauses[1].push_back(input1);
+
+  // if (!sat_solver_addclause(_pSat, &clauses[0][0], &clauses[0][0] + 2)
+  // ||
+  //     !sat_solver_addclause(_pSat, &clauses[1][0], &clauses[1][0] + 2))
+  //   return false;
+  // return true;
+}
+
+bool OneSubFind::addOrGateClause(int input0, int input1, int output,
+                                 vector<int> auxiliaryLits) {
+  // if (auxiliaryLits.empty()) {
+  //   auxiliaryLits.push_back(ctrlVar(input0));
+  //   auxiliaryLits.push_back(ctrlVar(input1));
+  // }
+  // return addAndGateClause(lit_neg(input0), lit_neg(input1),
+  //                         lit_neg(output), auxiliaryLits);
+}
+
+void OneSubFind::disableObj(int var){
+    // assert(!lit_sign(_ctrlLits[ctrlVar(var)]));
+    // lit_neg(_ctrlLits[ctrlVar(var)]);
+};
+
+void OneSubFind::enableObj(int var){
+    // assert(lit_sign(_ctrlLits[ctrlVar(var)]));
+    // lit_neg(_ctrlLits[ctrlVar(var)]);
+};
+
+bool OneSubFind::addAndGateClause(int input0, int input1, int output,
+                                  vector<int> auxiliaryLits) {
+  // if (auxiliaryLits.empty()) {
+  //   auxiliaryLits.push_back(ctrlVar(input0));
+  //   auxiliaryLits.push_back(ctrlVar(input1));
+  // }
+  // // input0 & input1 <=> output
+  // // =>(a'+b'+c + ctrl0 + ctrl1)(a+c'+ ctrl0)(b+c'+ ctrl1)
+  // vector<vector<int>> clauses(3);
+  // clauses[0].push_back(lit_neg(input0));
+  // clauses[0].push_back(lit_neg(input1));
+  // clauses[0].push_back(output);
+  // clauses[0].push_back(auxiliaryLits[0]);
+  // clauses[0].push_back(auxiliaryLits[1]);
+
+  // clauses[1].push_back(lit_neg(output));
+  // clauses[1].push_back(input0);
+  // clauses[1].push_back(auxiliaryLits[0]);
+
+  // clauses[2].push_back(lit_neg(output));
+  // clauses[2].push_back(input1);
+  // clauses[2].push_back(auxiliaryLits[1]);
+
+  // if (!sat_solver_addclause(_pSat, &clauses[0][0],
+  //                           &clauses[0][0] + clauses[0].size()) ||
+  //     !sat_solver_addclause(_pSat, &clauses[1][0],
+  //                           &clauses[1][0] + clauses[1].size()) ||
+  //     !sat_solver_addclause(_pSat, &clauses[2][0],
+  //                           &clauses[2][0] + clauses[2].size())) {
+  //   return false;
+  // }
+  return true;
+}
+
+// void increasingSAT() {
+//   //  i is replace by j
+//   int *clauses = new int[7];
+//   int k;
+//   int input0, input1, output;
+//   Abc_Obj_t *pObj, *pFanout;
+//   for (int i = 1; i < Abc_NtkObjNum(pNtk); ++i)
+//     for (int j = 1; j < Abc_NtkObjNum(pNtk); ++j) {
+//       pObj = Abc_NtkObj(pNtk, i);
+//       if (i == j || Abc_ObjIsPo(pObj)) continue;
+//       int *assumptions = new int[2];
+//       lit_neg(disableAuxiLit[i]);               // set to 2*var
+//       disableAuxiLit.push_back(var++ * 2 + 1);  // use the new clause
+//       Abc_ObjForEachFanout(pObj, pFanout, k) {
+//         input0 = Abc_ObjFanin0(pFanout)->Id * 2 +
+//         Abc_ObjFaninC0(pFanout);
+//         input1 = Abc_ObjFanin1(pFanout)->Id * 2 +
+//         Abc_ObjFaninC1(pFanout);
+//         if (lit_var(input0) == i) {
+//           input0 = 2 * j;
+//           if (lit_sign(input0)) input0 += 1;
+//         } else if (lit_var(input1) == i) {
+//           input1 = 2 * j;
+//           if (lit_sign(input1)) input1 += 1;
+//         } else
+//           assert(0);
+//         output = pObj->Id * 2;
+//         addAndGateClause(_pSat, input0, input1, output, var++ * 2);
+//       }
+//       sat_solver_solve(_pSat, &disableAuxiLit[0],
+//                        &disableAuxiLit[0] + disableAuxiLit.size(),
+//                        10000000, 10000000, 0, 0);
+//       lit_neg(disableAuxiLit.back());  // disable new clause
+//       lit_neg(disableAuxiLit[i]);      // disable  2*var
+//     }
+// }
+
+void Lsv_Ntk1SubFind(Abc_Frame_t *pAbc, Abc_Ntk_t *pNtk) {
+  // Abc_Ntk_t *_pNtkNew = Abc_NtkDup(pNtk);
+  // Abc_Obj_t *pObj, *pFanin, *pPo, *pPoNew;
+  // int i, j, k;
+  // Abc_NtkObjNum(pNtk);
+  // vector<int> LitOfRmConctBtwFanouts(Abc_NtkObjNum(pNtk));
+  // Abc_FrameReplaceCurrentNetwork(pAbc, pNtk);
+  // sat_solver *_pSat = sat_solver_new();
+  // var = Abc_NtkObjNum(pNtk);
+  // int input0, input1, output0, output1, output;
+  // Abc_NtkForEachObj(pNtk, pObj, i) {
+  //   if (!i) continue;
+  //   if (Abc_ObjIsPi(pObj) || Abc_ObjIsPo(pObj)) continue;
+  //   input0 = Abc_ObjFanin0(pObj)->Id * 2 + Abc_ObjFaninC0(pObj);
+  //   input1 = Abc_ObjFanin1(pObj)->Id * 2 + Abc_ObjFaninC1(pObj);
+  //   output = pObj->Id * 2;
+  //   if (!addAndGateClause(_pSat, input0, input1, output, 0)) {  // for
+  //   pNtk
+  //     cerr << "unsat\n";
+  //     return;
+  //   }
+
+  //   output = (var + pObj->Id) * 2;  // for _pNtkNew
+  //   if (!addAndGateClause(_pSat, input0, input1, output, 0)) {
+  //     cerr << "unsat\n";
+  //     return;
+  //   }
+  // }
+  // cerr << "inter node clause created.\n";
+
+  // var = Abc_NtkObjNum(pNtk) * 2 + Abc_NtkPoNum(pNtk) * 2;
+  // vector<int> outputLits;
+  // Abc_NtkForEachPo(pNtk, pPo, i) {
+  //   pPoNew = Abc_NtkPo(_pNtkNew, i);
+  //   input0 = Abc_ObjFanin0(pPo)->Id * 2;
+  //   input1 = (Abc_ObjFanin0(pPo)->Id + Abc_NtkObjNum(pNtk)) * 2;
+  //   output = var * 2 + i * 2;
+  //   // output0 = Abc_NtkObjNum(pNtk) * 4 + i * 4;
+  //   // output1 = Abc_NtkObjNum(pNtk) * 4 + i * 4 + 2;
+  //   if (!addXorGateClause(input0, input1, output)) {
+  //     cerr << "unsat\n";
+  //     return;
+  //   }
+  //   outputLits.push_back(output);
+  // }
+
+  // input0 = outputLits[0];
+  // var = Abc_NtkObjNum(pNtk) * 2 + Abc_NtkPoNum(pNtk) * 3;
+  // for (i = 1; i < outputLits.size(); ++i) {
+  //   output = var++ * 2;
+  //   input1 = outputLits[i];
+  //   if (!addOrGateClause(_pSat, input0, input1, output)) {
+  //     cerr << "unsat\n";
+  //     return;
+  //   }
+  //   input0 = output;
+  // }
+
+  // if (outputLits.size() == 1) output = outputLits[0];
+  // if (!sat_solver_addclause(_pSat, &output, &output + 1)) {
+  //   cerr << "unsat\n";
+  //   return;
+  // }
+  // int status =
+  //     sat_solver_solve(_pSat, NULL, NULL, 10000000, 10000000, 0, 0);
+
+  // if (status == l_False) {
+  //   printf("unsat\n");
+  // } else if (status == l_True)
+  //   printf("sat\n");
+  // else {
+  //   printf("undef\n");
+  //   assert(0);
+  // }
+  // return;
+}
+
+int Abc_CommandMajFind(Abc_Frame_t *pAbc, int argc, char **argv) {
+  // TODO:
+  // step.1: get the current network
+  // step.2: check whether the current network is strashed
+  // step.3: call Lsv_NtkMajFind() to report MAJ gates
+  // MuxCommandMuxFind(pAbc, argc, argv);
+
+  Abc_Ntk_t *pNtk = Abc_FrameReadNtk(pAbc);
+  if (!pNtk) return 1;
+  if (Abc_NtkIsStrash(pNtk))
+    Lsv_NtkMajFind(pNtk);
+  else {
+    pNtk = Abc_NtkStrash(pNtk, 0, 1, 0);
+    Lsv_NtkMajFind(pNtk);
+    Abc_NtkDelete(pNtk);
+  }
+  return 0;
+}
+
+////////////////////////////////////////////////////////////////////////
+///                       END OF FILE ///
+////////////////////////////////////////////////////////////////////////
+
+ABC_NAMESPACE_IMPL_END

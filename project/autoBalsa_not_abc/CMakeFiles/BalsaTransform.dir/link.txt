@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -Wextra -O3 -std=c++11 -fopenmp -ffast-math  -rdynamic CMakeFiles/BalsaTransform.dir/src/main.cpp.o  -o BalsaTransform -lboost_system 

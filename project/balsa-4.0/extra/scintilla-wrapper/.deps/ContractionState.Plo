@@ -1,0 +1,8 @@
+ContractionState.lo: ContractionState.cxx /usr/include/stdc-predef.h \
+ scintilla/include/Platform.h ContractionState.h
+
+/usr/include/stdc-predef.h:
+
+scintilla/include/Platform.h:
+
+ContractionState.h:

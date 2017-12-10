@@ -1,0 +1,10 @@
+# read PA1_testcase/c880.blif
+read PA1_testcase/c5315.blif
+read PA1_testcase/cUnitTest.blif
+# read PA1_testcase/c6288.blif
+# read PA1_testcase/c7552.blif
+# show
+# strash
+# collapse
+MAJ_find
+# show_bdd

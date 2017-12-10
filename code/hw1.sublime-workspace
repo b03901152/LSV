@@ -1,0 +1,913 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Abc_o",
+				"Abc_ObjName"
+			],
+			[
+				"BugFin",
+				"BugFind_Print2Circuit\t(bugFindPrint.cpp)"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"v",
+				"vector\tstd::vector"
+			],
+			[
+				"EdaComman",
+				"EdaCommandNewAig"
+			],
+			[
+				"EdaCom",
+				"EdaCommandAig"
+			],
+			[
+				"sort",
+				"SortData"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/bugfind/bugFind.cpp",
+			"settings":
+			{
+				"buffer_size": 13507,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/base/abci/abcMiter.c",
+			"settings":
+			{
+				"buffer_size": 40148,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/base/abc/abcNtk.c",
+			"settings":
+			{
+				"buffer_size": 74016,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/misc/vec/vecPtr.h",
+			"settings":
+			{
+				"buffer_size": 30824,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/misc/util/abc_global.h",
+			"settings":
+			{
+				"buffer_size": 16624,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/base/abc/abcFanio.c",
+			"settings":
+			{
+				"buffer_size": 12007,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/base/abc/abcDfs.c",
+			"settings":
+			{
+				"buffer_size": 59901,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/base/abc/abc.h",
+			"settings":
+			{
+				"buffer_size": 88084,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 375.0,
+		"last_filter": "pack",
+		"selected_items":
+		[
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"INs",
+				"Package Control: Install Package"
+			],
+			[
+				"In",
+				"Package Control: Install Package"
+			],
+			[
+				"Remove P",
+				"Package Control: Remove Package"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"list pa",
+				"Package Control: List Packages"
+			],
+			[
+				"Pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"",
+				":w - Save"
+			],
+			[
+				"install P",
+				"Package Control: Install Package"
+			],
+			[
+				"syntax C",
+				"Set Syntax: C++"
+			],
+			[
+				":w",
+				":w - Save"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Disable Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 453.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"ls",
+			"make",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/bugfind"
+	],
+	"file_history":
+	[
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/misc/vec/vecPtr.h",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/abc/abcDfs.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/abci/abc.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/abc/abc.h",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/abc/abcFanio.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/abci/abcQbf.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/abci/abcMiter.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/abci/abcVerify.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/proof/cec/cecCec.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/sat/cnf/cnf.h",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/sat/cnf/cnfMan.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/sat/cnf/cnfWrite.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/sat/bsat/satSolver.h",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/sat/bsat/satSolver.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/opt/ret/retInit.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/opt/ret/retIncrem.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/misc/util/abc_global.h",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/opt/ret/retArea.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/abci/abcDar.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/abc/abcAig.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/abc/abcUtil.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/abci/abcStrash.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/abc/abcNtk.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/abc/abcSop.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/misc/vec/vecInt.h",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/abc/abcObj.c",
+		"/home/danny/Dropbox/SyncFiles/DSnP/fraig/src/cir/cirSim.cpp",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/misc/vec/vecWrd.h",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/aig/aig/aigUtil.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/misc/vec/vec.h",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/aig/saig/saigConstr2.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/aig/saig/saigOutDec.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/proof/live/monotone.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/aig/aig/aig.h",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/abc/abcFunc.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/opt/dar/dar.h",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/main/main.h",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/proof/cec/cec.h",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/aig/aig/aigPart.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/main/mainInt.h",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/abci/abcPrint.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/abci/abcSat.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/bugfind/bugFind.h",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/bugfind/bugFindPrint.cpp",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/proof/cec/cec.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/main/mainFrame.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/abci/abcFraig.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/opt/mfs/mfsCore.c",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/bugfind/module.make",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/proof/fraig/fraig.h",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/Makefile",
+		"/home/danny/Dropbox/NTU/Thr1/LogicSyn/Homework/pa2/code/src/base/main/mainInit.c",
+		"/home/danny/Programming/Web-Programming-2016fall/week8-hackthon/package.json",
+		"/home/danny/Programming/Web-Programming-2016fall/week8-hackthon/src/css/PDF.css",
+		"/home/danny/Programming/Web-Programming-2016fall/week8-hackthon/src/js/PDF.jsx",
+		"/home/danny/Programming/Web-Programming-2016fall/week8-hackthon/src/index.jsx",
+		"/home/danny/Programming/Web-Programming-2016fall/week8-hackthon/.babelrc",
+		"/home/danny/Programming/Web-Programming-2016fall/week3-express/server.js",
+		"/home/danny/Programming/Web-Programming-2016fall/week8-hackthon/webpack.config.js",
+		"/home/danny/Programming/Web-Programming-2016fall/week8-hackthon/.eslintrc.js",
+		"/home/danny/Programming/Web-Programming-2016fall/week8-hackthon/server.js",
+		"/home/danny/Programming/Web-Programming-2016fall/week8-hackthon/src/App/App.jsx",
+		"/home/danny/Programming/Web-Programming-2016fall/week8-hackthon/index.html",
+		"/home/danny/Programming/Web-Programming-2016fall/week8-hackthon/src/App/App.js",
+		"/home/danny/Programming/Web-Programming-2016fall/week8-hackthon/src/index.js",
+		"/home/danny/Programming/Web-Programming-2016fall/week7-REST/package.json",
+		"/home/danny/Programming/Web-Programming-2016fall/week7-REST/src/index.js",
+		"/home/danny/Programming/Web-Programming-2016fall/week5-webpack/package.json",
+		"/home/danny/Programming/Web-Programming-2016fall/week6-inClass/.eslintrc.js",
+		"/home/danny/Dropbox/NTU/Thr1/Web-Programming/Lecture/Lecture6/calculator-starter/src/components/CalcApp.js",
+		"/home/danny/Dropbox/NTU/Thr1/Web-Programming/Lecture/Lecture8/test-demo/node_modules/babel-plugin-transform-regenerator/.test/tests.es6.js",
+		"/home/danny/Dropbox/NTU/Thr1/Web-Programming/Lecture/Lecture8/test-demo/.babelrc",
+		"/home/danny/Dropbox/NTU/Thr1/Web-Programming/Lecture/Lecture8/test-demo/add.js",
+		"/home/danny/Dropbox/NTU/Thr1/Web-Programming/Lecture/Lecture8/test-demo/__test__/add.spec.js",
+		"/home/danny/Dropbox/NTU/Thr1/Web-Programming/Lecture/Lecture8/test-demo/__test__/app.spec.js",
+		"/home/danny/Dropbox/NTU/Thr1/Web-Programming/Lecture/Lecture8/test-demo/app.js",
+		"/home/danny/Dropbox/NTU/Thr1/Web-Programming/Lecture/Lecture8/test-demo/package.json",
+		"/home/danny/Dropbox/NTU/Thr1/Web-Programming/Lecture/Lecture8/test-demo/getUser.js",
+		"/home/danny/Dropbox/NTU/Thr1/Web-Programming/Lecture/Lecture8/test-demo/__test__/getUser.spec.js",
+		"/home/danny/.config/sublime-text-3/Packages/User/SublimeLinter.sublime-settings",
+		"/home/danny/.config/sublime-text-3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/home/danny/.config/sublime-text-3/Packages/ESLint/ESLint.sublime-settings",
+		"/home/danny/Dropbox/NTU/SSAT-Project/SSAT.sublime-project",
+		"/home/dannywang/Dropbox/NTU/SSAT-Project/src/ssat/ssat.cpp",
+		"/home/dannywang/Dropbox/NTU/SSAT-Project/src/ssat/ssatMain.cpp",
+		"/home/dannywang/Dropbox/NTU/SSAT-Project/SSAT.sublime-project",
+		"/home/dannywang/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/dannywang/Dropbox/NTU/SSAT-Project/src/ssat/CNFMgr.h",
+		"/home/dannywang/.config/sublime-text-3/Packages/ClangAutoComplete/ClangAutoComplete.sublime-settings",
+		"/home/dannywang/Dropbox/NTU/SSAT-Project/src/bdd/cudd/cuddInit.c",
+		"/home/danny/Dropbox/NTU/二下/EDA/ICCAD/CAD-Contest-NP3/src/bmatch/bmatch.h",
+		"/home/danny/Dropbox/NTU/SSAT專題/SSAT.sublime-project",
+		"/home/danny/Dropbox/NTU/SSAT專題/src/base/abci/abc.c",
+		"/home/dannywang/Dropbox/NTU/SSAT專題/src/ssat/ssat.cpp",
+		"/home/danny/Dropbox/台大課/二下/EDA/ICCAD/CAD-Contest-NP3/src/base/abci/abcRewrite.c",
+		"/home/danny/Dropbox/台大課/二下/EDA/ICCAD/CAD-Contest-NP3/src/bmatch/bmatch.cpp",
+		"/home/danny/Dropbox/台大課/二下/EDA/ICCAD/CAD-Contest-NP3/src/bmatch/bmatchResync.cpp",
+		"/home/danny/Dropbox/台大課/二下/EDA/ICCAD/CAD-Contest-NP3/src/base/abc/abcUtil.c",
+		"/home/danny/Dropbox/台大課/二下/EDA/ICCAD/CAD-Contest-NP3/src/bmatch/bmatch.h",
+		"/home/danny/Dropbox/台大課/二下/EDA/ICCAD/CAD-Contest-NP3/CAD.sublime-project",
+		"/home/danny/Dropbox/台大課/二下/EDA/ICCAD/CAD-Contest-NP3/src/base/abci/abcStrash.c",
+		"/home/danny/Dropbox/台大課/二下/EDA/ICCAD/CAD-Contest-NP3/src/base/abc/abcFunc.c",
+		"/home/danny/Dropbox/台大課/二下/EDA/ICCAD/CAD-Contest-NP3/src/base/io/ioReadVerilog.c",
+		"/home/danny/Dropbox/台大課/二下/EDA/ICCAD/CAD-Contest-NP3/src/base/abc/abc.h",
+		"/home/danny/Dropbox/台大課/二下/EDA/ICCAD/CAD-Contest-NP3/src/base/io/ioUtil.c",
+		"/home/danny/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/danny/Dropbox/台大課/二下/EDA/ICCAD/CAD-Contest-NP3/src/misc/extra/extraUtilUtil.c",
+		"/home/danny/Dropbox/台大課/二下/EDA/ICCAD/abc/src/base/abc/abcNtk.c",
+		"/home/danny/Dropbox/台大課/二下/EDA/ICCAD/abc/src/base/abc/abc.h",
+		"/home/danny/Dropbox/台大課/二下/EDA/ICCAD/abc/src/eda/module.make",
+		"/home/danny/Downloads/abc_eda/src/base/main/main.c",
+		"/home/danny/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/danny/Downloads/abc_eda/src/base/cmd/cmd.h",
+		"/home/danny/Downloads/abc_eda/src/base/cmd/cmdApi.c",
+		"/home/danny/Downloads/abc_eda/src/base/main/libSupport.c",
+		"/home/danny/.config/sublime-text-3/Packages/untitled",
+		"/home/danny/Downloads/abc_eda/src/base/main/mainFrame.d",
+		"/home/danny/Downloads/abc_eda/src/eda/module.make",
+		"/home/danny/Downloads/abc_eda/src/eda/edaHello.c",
+		"/home/danny/Downloads/abc_eda/src/base/main/mainInit.c",
+		"/home/danny/Downloads/abc_eda/src/eda/eda.c",
+		"/home/danny/Downloads/abc_eda/readme",
+		"/home/danny/Downloads/abc_eda/src/eda/eda.h",
+		"/home/danny/Programming/DSnP/hw1/p2/p2.cpp",
+		"/home/danny/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/danny/.config/sublime-text-3/Packages/User/C++.sublime-build",
+		"/home/danny/Programming/DSnP/hw1/p2/p2Data.cpp",
+		"/home/danny/Programming/EEWeek2015/server.js"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 95.0,
+		"where_history":
+		[
+			"<open folders>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"CommandCec",
+			"NtkMiterSat",
+			"NtkMiter",
+			"pCopy",
+			"Const0",
+			"Const1",
+			"NtkConst",
+			"Patch",
+			"Delete",
+			"Replace",
+			"ObjCop",
+			"ObjDup",
+			"Obj",
+			"Name",
+			"NtkDup",
+			"Cec",
+			"SetFanin",
+			"Start",
+			"Vec_WrdSer",
+			"Vec_WrdEntry",
+			"unsigned",
+			"Max",
+			"pData",
+			"SopSimul",
+			"Push",
+			"random",
+			"Dfs_rec",
+			"Dfs",
+			"Simulate",
+			"Abc_ObjSopSimulate",
+			"SopSim",
+			"DSat",
+			"DeriveSim",
+			"DSat",
+			"Abc_NtkToDar",
+			"CommandAig",
+			"Abc_NtkToDar",
+			"Aig_ManDfs",
+			"Aig_Man_t",
+			"Abc_Aig_t",
+			"Ssw_ManFindDirectImplications",
+			"Aig_Man_t",
+			"DeriveSim",
+			"Cec",
+			"sat_solver_solve",
+			"l_False",
+			"Cnf_DeriveSimple",
+			"Cnf",
+			"Name",
+			"Const",
+			"Child",
+			"child",
+			"Child",
+			"Abc_NtkForEachNode",
+			"ForEach",
+			"CommandAig",
+			"Init",
+			"CommandAig",
+			"CommandStrash",
+			"Strash",
+			"Read",
+			"NtkRead",
+			"\n***********************************************************************/",
+			"Cnf_Man_t",
+			"DeriveSimple",
+			"Derive",
+			"Abc_NtkSet",
+			"Abc_Ntk",
+			"Abc_ntk",
+			"Print",
+			"/**",
+			"ABC_NAMESPACE_IMPL_START",
+			"class=",
+			"lastre",
+			"footer",
+			";",
+			"\t\t\n",
+			"test_data_out",
+			"pNtk",
+			"Abc_NtkPrepareTwoNtks",
+			"4",
+			"commandCec",
+			"dcec",
+			"Abc_CommandCec",
+			"Abc_CommandStr",
+			"strash",
+			"Io_readv",
+			"toggle",
+			"Abc_Commandcec",
+			"INDENT",
+			"new",
+			"TypeCheck",
+			"ctrl+d",
+			"find",
+			"replace",
+			"main",
+			"args",
+			"ctrl",
+			"args",
+			"terminal"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"className=\n",
+			");\n",
+			"ssss"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/bugfind/bugFind.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13507,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5945,
+								5945
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3720.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/base/abci/abcMiter.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 40148,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3216,
+								3216
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 720.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/base/abc/abcNtk.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 74016,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								44866,
+								44866
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 26263.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/misc/vec/vecPtr.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 30824,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3774,
+								3774
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4623.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/misc/util/abc_global.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 16624,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6675,
+								6675
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3803.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/base/abc/abcFanio.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12007,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6161,
+								6161
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3295.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/base/abc/abcDfs.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 59901,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2756,
+								2756
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1443.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/base/abc/abc.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 88084,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								30388,
+								30388
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 455.0,
+						"translation.y": 7903.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/C++.sublime-build",
+	"project": "hw1.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"miter",
+				"src/base/abci/abcMiter.c"
+			],
+			[
+				"abc.c",
+				"src/base/abci/abc.c"
+			],
+			[
+				"abc.h",
+				"src/base/abc/abc.h"
+			],
+			[
+				"cec",
+				"src/proof/cec/cecCec.c"
+			],
+			[
+				"vecp",
+				"src/misc/vec/vecPtr.h"
+			],
+			[
+				"vec",
+				"src/misc/vec/vecWrd.h"
+			],
+			[
+				"vecint",
+				"src/misc/vec/vecInt.h"
+			],
+			[
+				"vecptr",
+				"src/misc/vec/vecPtr.h"
+			],
+			[
+				"vec.h",
+				"src/misc/vec/vec.h"
+			],
+			[
+				"abcdfs",
+				"src/base/abc/abcDfs.c"
+			],
+			[
+				"main.h",
+				"src/base/main/main.h"
+			],
+			[
+				"cec.h",
+				"src/proof/cec/cec.h"
+			],
+			[
+				"dar.h",
+				"src/opt/dar/dar.h"
+			],
+			[
+				"mainin",
+				"src/base/main/mainInt.h"
+			],
+			[
+				"cec.",
+				"src/proof/cec/cec.c"
+			],
+			[
+				"cnf",
+				"src/sat/cnf/cnf.h"
+			],
+			[
+				"abc",
+				"src/base/abc/abc.h"
+			],
+			[
+				"fraig",
+				"src/proof/fraig/fraig.h"
+			],
+			[
+				"mainint",
+				"src/base/main/mainInt.h"
+			],
+			[
+				"frame",
+				"src/base/main/mainFrame.c"
+			],
+			[
+				"maininit",
+				"src/base/main/mainInit.c"
+			],
+			[
+				"readve",
+				"src/base/io/ioReadVerilog.c"
+			],
+			[
+				"",
+				"src/base/main/main.c"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Dropbox/NTU/SSAT專題/CAD.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 185.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

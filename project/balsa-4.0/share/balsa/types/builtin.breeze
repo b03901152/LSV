@@ -1,0 +1,68 @@
+;;; Breeze intermediate file (list format)
+;;; Created: Sun Nov 26 16:49:27 2017
+;;; By: root@yoyoChen (Linux)
+;;; With balsa-c version: 4.0
+;;; Command: ../../../src/balsa-c/balsa-c -e -I ../../../share -b -i -j builtin.balsa 
+
+;;; Imports
+;;; Types
+
+(type "bit" (numeric-type #f 1))
+(type "BalsaError" (enumeration-type #f 3 ("runtime" 0) ("fatal" 1) ("error" 2) ("warning" 3) ("report" 4)))
+(type "String" (builtin-type))
+;;; Constants
+
+;;; Parts
+(balsa
+  (builtin-function-decl (at 42 1 "builtin.balsa" 0) "String"
+    (formal-ports (at 42 35 "builtin.balsa" 0) 
+      (param-port (at 42 35 "builtin.balsa" 0) (idents (at 42 28 "builtin.balsa" 0) "string") (existing-type (at 42 37 "builtin.balsa" 0) "String"))
+    )
+    (existing-type (at 42 58 "builtin.balsa" 0) "String")
+  )
+)
+
+(breeze-part "StringAppend"
+  (ports
+    (port "activate" passive output (named-type "String") (at 43 1 "builtin.balsa" 0))
+    (port "str1" active input (named-type "String"))
+    (port "str2" active input (named-type "String"))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 43 1 "builtin.balsa" 0)
+  )
+  (channels
+    (pull 64 (at 43 1 "builtin.balsa" 0) (type (named-type "String"))) ; 1
+    (pull 64 (at 43 1 "builtin.balsa" 0) (type (named-type "String"))) ; 2
+  )
+  (components)
+)
+
+(balsa
+  (builtin-function-decl (at 47 1 "builtin.balsa" 0) "ToString"
+    (formal-ports (at 47 32 "builtin.balsa" 0) 
+      (type-param-port (at 47 32 "builtin.balsa" 0) (idents (at 47 30 "builtin.balsa" 0) "X"))
+      (value-port (at 47 46 "builtin.balsa" 0) (idents (at 47 40 "builtin.balsa" 0) "value") (existing-type (at 47 48 "builtin.balsa" 0) "X"))
+    )
+    (existing-type (at 47 64 "builtin.balsa" 0) "String")
+  )
+)
+
+(breeze-part "WriteMessage"
+  (ports
+    (port "activate" passive output (numeric-type #f 1) (at 50 1 "builtin.balsa" 0))
+    (port "str" active input (named-type "String"))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 50 1 "builtin.balsa" 0)
+  )
+  (channels
+    (pull 64 (at 50 1 "builtin.balsa" 0) (type (named-type "String"))) ; 1
+  )
+  (components)
+)
+
+
+;;; EOF

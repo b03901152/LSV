@@ -1,0 +1,13 @@
+# Benchmark "iscas85/cUnitTest" written by ABC on Sun Sep 17 17:05:10 2017
+.model iscas85/c8
+.inputs 1 2 3
+.outputs 8
+.names 2 3 5
+11 1
+.names 1 5 6 
+00 1
+.names 2 3 7
+00 1
+.names 6 7 8
+00 1
+.end

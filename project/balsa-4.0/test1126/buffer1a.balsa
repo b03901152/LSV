@@ -1,0 +1,10 @@
+import [balsa.types.basic]
+procedure buffer1 (input i : byte; output o : byte) is
+ variable x : byte
+begin
+ loop
+ i -> x -- Input communication
+ ; -- Sequence operator
+ o <- x -- Output communication
+ end
+end

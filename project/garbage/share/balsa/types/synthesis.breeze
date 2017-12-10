@@ -1,0 +1,17 @@
+;;; Breeze intermediate file (list format)
+;;; Created: Thu Oct 28 22:17:55 2010
+;;; By: janinl@bluu.cs.man.ac.uk (Linux)
+;;; With balsa-c version: 4.0
+;;; Command: ../../../src/balsa-c/balsa-c -e -I ../../../share -b -i synthesis.balsa 
+
+;;; Imports
+;;; Types
+
+(type "UnaryOperator" (enumeration-type #f 1 ("Negate" 0) ("Invert" 1)))
+(type "BinaryOperator" (enumeration-type #f 4 ("Add" 0) ("Subtract" 1) ("ReverseSubtract" 2) ("Equals" 3) ("NotEquals" 4) ("LessThan" 5) ("GreaterThan" 6) ("LessOrEquals" 7) ("GreaterOrEquals" 8) ("And" 9) ("Or" 10) ("Xor" 11)))
+;;; Constants
+
+;;; Parts
+
+
+;;; EOF

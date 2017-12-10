@@ -1,0 +1,59 @@
+;;; Breeze intermediate file (list format)
+;;; Created: Tue Nov 28 12:31:43 2017
+;;; By: yoyo@yoyoChen (Linux)
+;;; With balsa-c version: 4.0
+;;; Command: balsa-c -b -I . test 
+
+;;; Imports
+(import "balsa.types.builtin")
+(import "balsa.types.synthesis")
+(import "balsa.types.basic")
+;;; Types
+
+;;; Constants
+
+;;; Parts
+(breeze-part "buffer1"
+  (ports
+    (sync-port "activate" passive (at 2 1 "test.balsa" 0))
+    (port "i" active input (numeric-type #f 8) (at 2 30 "test.balsa" 0))
+    (port "j" active input (numeric-type #f 8) (at 2 30 "test.balsa" 0))
+    (port "o" active output (numeric-type #f 8) (at 2 47 "test.balsa" 0))
+  )
+  (attributes
+    (is-procedure)
+    (is-permanent)
+    (at 2 1 "test.balsa" 0)
+  )
+  (channels
+    (sync (at 6 2 "test.balsa" 1)) ; 1
+    (pull 8 (at 7 5 "test.balsa" 1) (name "i")) ; 2
+    (pull 8 (at 8 5 "test.balsa" 1) (name "j")) ; 3
+    (push 8 (at 9 5 "test.balsa" 1) (name "o")) ; 4
+    (pull 8 (at 9 16 "test.balsa" 1) (name "y")) ; 5
+    (pull 8 (at 9 10 "test.balsa" 1) (name "x")) ; 6
+    (pull 8 (at 9 12 "test.balsa" 1)) ; 7
+    (sync (at 9 7 "test.balsa" 1)) ; 8
+    (push 8 (at 8 7 "test.balsa" 1) (name "y")) ; 9
+    (sync (at 8 7 "test.balsa" 1)) ; 10
+    (push 8 (at 7 7 "test.balsa" 1) (name "x")) ; 11
+    (sync (at 7 7 "test.balsa" 1)) ; 12
+    (sync (at 7 11 "test.balsa" 1)) ; 13
+  )
+  (components
+    (component "$BrzVariable" (8 1 "x[0..7]" "") (11 (6)) (at 3 2 "test.balsa" 0)) ; 0
+    (component "$BrzVariable" (8 1 "y[0..7]" "") (9 (5)) (at 4 2 "test.balsa" 0)) ; 1
+    (component "$BrzLoop" () (1 13) (at 6 2 "test.balsa" 0)) ; 2
+    (component "$BrzSequence" (3 "TT") (13 (12 10 8)) (at 7 11 "test.balsa" 0)) ; 3
+    (component "$BrzFetch" (8 "false") (12 2 11) (at 7 7 "test.balsa" 0)) ; 4
+    (component "$BrzFetch" (8 "false") (10 3 9) (at 8 7 "test.balsa" 0)) ; 5
+    (component "$BrzFetch" (8 "false") (8 7 4) (at 9 7 "test.balsa" 0)) ; 6
+    (component "$BrzBinaryFunc" (8 8 8 "And" "false" "false" "false") (7 6 5) (at 9 12 "test.balsa" 0)) ; 7
+  )
+  (call-contexts
+    (call-context 1 "buffer1" (at 2 1 "test.balsa" 0) (at 0 0 "" 0) 0)
+  )
+)
+
+
+;;; EOF

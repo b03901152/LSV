@@ -1,0 +1,11 @@
+import [balsa.types.basic]
+procedure buffer1 (input i,j : boolean; output o : boolean) is
+ variable x : boolean
+ variable y : boolean
+begin
+ loop
+    i -> x;
+    j -> y;
+    o <- (x<y)
+ end
+end

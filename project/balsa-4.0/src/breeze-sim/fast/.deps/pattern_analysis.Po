@@ -1,0 +1,3 @@
+pattern_analysis.o: ../pattern_analysis.c /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

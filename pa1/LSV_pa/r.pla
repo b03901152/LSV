@@ -1,0 +1,10 @@
+# Benchmark "iscas85/cTest_aig_VS_Strash" written by ABC on Sat Oct 14 10:10:54 2017
+.i 3
+.o 1
+.ilb 1 2 3
+.ob 9
+.p 3
+-11 1
+1-1 1
+11- 1
+.e

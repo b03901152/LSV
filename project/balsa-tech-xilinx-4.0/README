@@ -1,0 +1,28 @@
+
+|_  _ |  _ _    |_ _  _ |_    _ _.|.._ _ _
+|_)(_\|_/ (_\ - |_(-'(_.| | - _/_|||| |_/_
+
+    (C) 1995-2006 School of Computer Science,
+    The University of Manchester,
+    Manchester
+    M13 9PL, UK
+    email: balsa@cs.man.ac.uk
+
+balsa-tech-xilinx is a Balsa technology-description package
+which generates Verilog netlists (from balsa-netlist) for
+Xilinx FPGAs.
+
+To install this package first install Balsa and add Balsa's bin
+directory to your path.  Then:
+
+1) ./configure
+
+This will use balsa-config to find the Balsa installation directory
+and the correct `tech' directory to install into.
+
+2) make install
+
+Installs this package and makes the new Balsa technology `xilinx'
+
+To use this technology, set your BALSATECH environment variable
+to `xilinx'.

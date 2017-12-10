@@ -1,0 +1,246 @@
+;;; Breeze intermediate file (list format)
+;;; Created: Sun Nov 26 16:49:28 2017
+;;; By: root@yoyoChen (Linux)
+;;; With balsa-c version: 4.0
+;;; Command: ../../../src/balsa-c/balsa-c -e -I ../../../share -b -i string.balsa 
+
+;;; Imports
+(import "balsa.types.basic")
+;;; Types
+
+(type "StringJustification" (enumeration-type #f 1 ("left" 0) ("right" 1)))
+(type "StringTokenTail" (record-type 128 ("token" (named-type "String")) ("tail" (named-type "String")) ))
+;;; Constants
+
+;;; Parts
+(breeze-part "StringLength"
+  (ports
+    (port "activate" passive output (numeric-type #f 32) (at 36 1 "string.balsa" 0))
+    (port "string" active input (named-type "String"))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 36 1 "string.balsa" 0)
+  )
+  (channels
+    (pull 64 (at 36 1 "string.balsa" 0) (type (named-type "String"))) ; 1
+  )
+  (components)
+)
+
+(breeze-part "SubString"
+  (ports
+    (port "activate" passive output (named-type "String") (at 42 1 "string.balsa" 0))
+    (port "string" active input (named-type "String"))
+    (port "index" active input (numeric-type #f 32))
+    (port "length" active input (numeric-type #f 32))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 42 1 "string.balsa" 0)
+  )
+  (channels
+    (pull 64 (at 42 1 "string.balsa" 0) (type (named-type "String"))) ; 1
+    (pull 32 (at 42 1 "string.balsa" 0)) ; 2
+    (pull 32 (at 42 1 "string.balsa" 0)) ; 3
+  )
+  (components)
+)
+
+(breeze-part "StringEqual"
+  (ports
+    (port "activate" passive output (numeric-type #f 1) (at 46 1 "string.balsa" 0))
+    (port "str1" active input (named-type "String"))
+    (port "str2" active input (named-type "String"))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 46 1 "string.balsa" 0)
+  )
+  (channels
+    (pull 64 (at 46 1 "string.balsa" 0) (type (named-type "String"))) ; 1
+    (pull 64 (at 46 1 "string.balsa" 0) (type (named-type "String"))) ; 2
+  )
+  (components)
+)
+
+(balsa
+  (builtin-function-decl (at 52 1 "string.balsa" 0) "FromString"
+    (formal-ports (at 52 34 "string.balsa" 0) 
+      (type-param-port (at 52 34 "string.balsa" 0) (idents (at 52 32 "string.balsa" 0) "X"))
+      (value-port (at 52 49 "string.balsa" 0) (idents (at 52 42 "string.balsa" 0) "source") (existing-type (at 52 51 "string.balsa" 0) "String"))
+      (value-port (at 52 69 "string.balsa" 0) (idents (at 52 59 "string.balsa" 0) "remainder") (existing-type (at 52 71 "string.balsa" 0) "String"))
+    )
+    (existing-type (at 52 92 "string.balsa" 0) "X")
+  )
+)
+
+(breeze-part "RepeatString"
+  (ports
+    (port "activate" passive output (named-type "String") (at 55 1 "string.balsa" 0))
+    (port "str" active input (named-type "String"))
+    (port "n" active input (numeric-type #f 32))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 55 1 "string.balsa" 0)
+  )
+  (channels
+    (pull 64 (at 55 1 "string.balsa" 0) (type (named-type "String"))) ; 1
+    (pull 32 (at 55 1 "string.balsa" 0)) ; 2
+  )
+  (components)
+)
+
+(breeze-part "FitStringToWidth"
+  (ports
+    (port "activate" passive output (named-type "String") (at 61 1 "string.balsa" 0))
+    (port "str" active input (named-type "String"))
+    (port "width" active input (numeric-type #f 32))
+    (port "justification" active input (named-type "StringJustification"))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 61 1 "string.balsa" 0)
+  )
+  (channels
+    (pull 64 (at 61 1 "string.balsa" 0) (type (named-type "String"))) ; 1
+    (pull 32 (at 61 1 "string.balsa" 0)) ; 2
+    (pull 1 (at 61 1 "string.balsa" 0) (type (named-type "StringJustification"))) ; 3
+  )
+  (components)
+)
+
+(balsa
+  (builtin-function-decl (at 65 1 "string.balsa" 0) "NumberFromString"
+    (formal-ports (at 65 40 "string.balsa" 0) 
+      (type-param-port (at 65 40 "string.balsa" 0) (idents (at 65 38 "string.balsa" 0) "X"))
+      (value-port (at 65 55 "string.balsa" 0) (idents (at 65 48 "string.balsa" 0) "source") (existing-type (at 65 57 "string.balsa" 0) "String"))
+      (value-port (at 65 71 "string.balsa" 0) (idents (at 65 65 "string.balsa" 0) "radix") (numeric-type (at 65 75 "string.balsa" 0) #f (literal-expr (at 65 73 "string.balsa" 0) 6)))
+    )
+    (existing-type (at 65 94 "string.balsa" 0) "X")
+  )
+)
+
+(balsa
+  (builtin-function-decl (at 69 1 "string.balsa" 0) "NumberToString"
+    (formal-ports (at 69 38 "string.balsa" 0) 
+      (type-param-port (at 69 38 "string.balsa" 0) (idents (at 69 36 "string.balsa" 0) "X"))
+      (value-port (at 69 52 "string.balsa" 0) (idents (at 69 46 "string.balsa" 0) "value") (existing-type (at 69 54 "string.balsa" 0) "X"))
+      (value-port (at 69 63 "string.balsa" 0) (idents (at 69 57 "string.balsa" 0) "radix") (numeric-type (at 69 67 "string.balsa" 0) #f (literal-expr (at 69 65 "string.balsa" 0) 6)))
+      (value-port (at 70 20 "string.balsa" 0) (idents (at 70 2 "string.balsa" 0) "underscoreSpacing") (numeric-type (at 70 24 "string.balsa" 0) #f (literal-expr (at 70 22 "string.balsa" 0) 8)))
+      (value-port (at 70 48 "string.balsa" 0) (idents (at 70 30 "string.balsa" 0) "showLeadingZeroes") (existing-type (at 70 50 "string.balsa" 0) "bit"))
+    )
+    (existing-type (at 70 68 "string.balsa" 0) "String")
+  )
+)
+
+(breeze-part "TokenFromString"
+  (ports
+    (port "activate" passive output (named-type "String") (at 77 1 "string.balsa" 0))
+    (port "string" active input (named-type "String"))
+    (port "remainder" active input (named-type "String"))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 77 1 "string.balsa" 0)
+  )
+  (channels
+    (pull 64 (at 77 1 "string.balsa" 0) (type (named-type "String"))) ; 1
+    (pull 64 (at 77 1 "string.balsa" 0) (type (named-type "String"))) ; 2
+  )
+  (components)
+)
+
+(breeze-part "Chr"
+  (ports
+    (port "activate" passive output (named-type "String") (at 80 1 "string.balsa" 0))
+    (port "value" active input (numeric-type #f 8))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 80 1 "string.balsa" 0)
+  )
+  (channels
+    (pull 8 (at 80 1 "string.balsa" 0)) ; 1
+  )
+  (components)
+)
+
+(breeze-part "Ord"
+  (ports
+    (port "activate" passive output (numeric-type #f 8) (at 84 1 "string.balsa" 0))
+    (port "char" active input (named-type "String"))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 84 1 "string.balsa" 0)
+  )
+  (channels
+    (pull 64 (at 84 1 "string.balsa" 0) (type (named-type "String"))) ; 1
+  )
+  (components)
+)
+
+(breeze-part "StringToPrintable"
+  (ports
+    (port "activate" passive output (named-type "String") (at 87 1 "string.balsa" 0))
+    (port "string" active input (named-type "String"))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 87 1 "string.balsa" 0)
+  )
+  (channels
+    (pull 64 (at 87 1 "string.balsa" 0) (type (named-type "String"))) ; 1
+  )
+  (components)
+)
+
+(breeze-part "StringDowncase"
+  (ports
+    (port "activate" passive output (named-type "String") (at 90 1 "string.balsa" 0))
+    (port "string" active input (named-type "String"))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 90 1 "string.balsa" 0)
+  )
+  (channels
+    (pull 64 (at 90 1 "string.balsa" 0) (type (named-type "String"))) ; 1
+  )
+  (components)
+)
+
+(breeze-part "StringUpcase"
+  (ports
+    (port "activate" passive output (named-type "String") (at 91 1 "string.balsa" 0))
+    (port "string" active input (named-type "String"))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 91 1 "string.balsa" 0)
+  )
+  (channels
+    (pull 64 (at 91 1 "string.balsa" 0) (type (named-type "String"))) ; 1
+  )
+  (components)
+)
+
+(breeze-part "StringGetToken"
+  (ports
+    (port "activate" passive output (named-type "StringTokenTail") (at 103 1 "string.balsa" 0))
+    (port "line" active input (named-type "String"))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 103 1 "string.balsa" 0)
+  )
+  (channels
+    (pull 64 (at 103 1 "string.balsa" 0) (type (named-type "String"))) ; 1
+  )
+  (components)
+)
+
+
+;;; EOF

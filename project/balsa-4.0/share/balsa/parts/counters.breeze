@@ -1,0 +1,93 @@
+;;; Breeze intermediate file (list format)
+;;; Created: Sun Nov 26 16:49:28 2017
+;;; By: root@yoyoChen (Linux)
+;;; With balsa-c version: 4.0
+;;; Command: ../../../src/balsa-c/balsa-c -e -I ../../../share -b -i counters.balsa 
+
+;;; Imports
+(import "balsa.types.basic")
+;;; Types
+
+;;; Constants
+
+;;; Parts
+(balsa
+  (procedure-decl (at 29 1 "counters.balsa" 0) "Repeat"
+    (formal-ports (at 30 18 "counters.balsa" 0) 
+      (param-port (at 30 18 "counters.balsa" 0) (idents (at 30 12 "counters.balsa" 0) "count") (existing-type (at 30 20 "counters.balsa" 0) "cardinal"))
+      (sync-port (at 31 2 "counters.balsa" 0) default (idents (at 31 7 "counters.balsa" 0) "o"))
+    )
+    (block (at 32 1 "counters.balsa" 0) 
+      (decls (at 0 0 "" 0))
+      (if-else (at 33 2 "counters.balsa" 0) 
+        (guards (at 33 15 "counters.balsa" 0) 
+          (guard (at 33 15 "counters.balsa" 0) (binary-expr (at 33 11 "counters.balsa" 0) "Equals" (ident-expr (at 33 5 "counters.balsa" 0) "count") (literal-expr (at 33 13 "counters.balsa" 0) 0)) (print (at 34 3 "counters.balsa" 0) (ident-expr (at 34 9 "counters.balsa" 0) "error") (exprs (at 34 16 "counters.balsa" 0) 
+                (string-expr (at 34 16 "counters.balsa" 0) "Repeat count must not be 0")
+              )))
+          (guard (at 35 15 "counters.balsa" 0) (binary-expr (at 35 11 "counters.balsa" 0) "Equals" (ident-expr (at 35 5 "counters.balsa" 0) "count") (literal-expr (at 35 13 "counters.balsa" 0) 1)) (sync (at 36 3 "counters.balsa" 0) (ident-lvalue (at 36 8 "counters.balsa" 0) "o")))
+          (guard (at 37 15 "counters.balsa" 0) (binary-expr (at 37 11 "counters.balsa" 0) "Equals" (ident-expr (at 37 5 "counters.balsa" 0) "count") (literal-expr (at 37 13 "counters.balsa" 0) 2)) (sequential (at 38 10 "counters.balsa" 0) 
+              (sync (at 38 3 "counters.balsa" 0) (ident-lvalue (at 38 8 "counters.balsa" 0) "o"))
+              (sync (at 38 12 "counters.balsa" 0) (ident-lvalue (at 38 17 "counters.balsa" 0) "o"))
+            ))
+        )
+        (block-command (at 0 0 "" 0) 
+          (block (at 40 3 "counters.balsa" 0) 
+          (decls (at 41 4 "counters.balsa" 0) 
+            (shared-decl (at 41 4 "counters.balsa" 0) "doNext" (block (at 41 21 "counters.balsa" 0) 
+                (decls (at 0 0 "" 0))
+                (procedure-call (at 42 12 "counters.balsa" 0) "Repeat"
+                  (procedure-params (at 42 19 "counters.balsa" 0) 
+                    (expr-proc-param (at 42 19 "counters.balsa" 0) (binary-expr (at 42 19 "counters.balsa" 0) "Divide" (ident-expr (at 42 13 "counters.balsa" 0) "count") (literal-expr (at 42 21 "counters.balsa" 0) 2)))
+                    (expr-proc-param (at 42 24 "counters.balsa" 0) (ident-expr (at 42 24 "counters.balsa" 0) "o"))
+                  )
+                )
+              ))
+          )
+          (sequential (at 48 14 "counters.balsa" 0) 
+            (sequential (at 47 8 "counters.balsa" 0) 
+              (if (at 45 4 "counters.balsa" 0) 
+                (guards (at 45 22 "counters.balsa" 0) 
+                  (guard (at 45 22 "counters.balsa" 0) (as-expr (at 45 14 "counters.balsa" 0) (ident-expr (at 45 8 "counters.balsa" 0) "count") (existing-type (at 45 17 "counters.balsa" 0) "bit")) (sync (at 46 5 "counters.balsa" 0) (ident-lvalue (at 46 10 "counters.balsa" 0) "o")))
+                )
+              )
+              (procedure-call (at 48 11 "counters.balsa" 0) "doNext"
+                (procedure-params (at 0 0 "" 0))
+              )
+            )
+            (procedure-call (at 48 23 "counters.balsa" 0) "doNext"
+              (procedure-params (at 0 0 "" 0))
+            )
+          )
+        )
+        )
+      )
+    )
+  )
+)
+
+(breeze-part "Dup"
+  (ports
+    (sync-port "activate" passive (at 54 26 "counters.balsa" 0))
+    (sync-port "o" active (at 31 2 "counters.balsa" 0))
+  )
+  (attributes
+    (is-procedure)
+    (at 54 26 "counters.balsa" 0)
+  )
+  (channels
+    (sync (at 38 10 "counters.balsa" 1)) ; 1
+    (sync (at 38 8 "counters.balsa" 1) (name "o")) ; 2
+    (sync (at 38 17 "counters.balsa" 1) (name "o")) ; 3
+    (sync (at 38 8 "counters.balsa" 1) (name "o")) ; 4
+  )
+  (components
+    (component "$BrzSequence" (2 "S") (1 (4 3)) (at 38 10 "counters.balsa" 0)) ; 0
+    (component "$BrzCall" (2) ((4 3) 2) (at 38 10 "counters.balsa" 0)) ; 1
+  )
+  (call-contexts
+    (call-context 1 "Repeat-0" (at 54 26 "counters.balsa" 0) (at 0 0 "" 0) 0)
+  )
+)
+
+
+;;; EOF

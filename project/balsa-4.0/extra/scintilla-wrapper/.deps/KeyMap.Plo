@@ -1,0 +1,10 @@
+KeyMap.lo: KeyMap.cxx /usr/include/stdc-predef.h \
+ scintilla/include/Platform.h scintilla/include/Scintilla.h KeyMap.h
+
+/usr/include/stdc-predef.h:
+
+scintilla/include/Platform.h:
+
+scintilla/include/Scintilla.h:
+
+KeyMap.h:

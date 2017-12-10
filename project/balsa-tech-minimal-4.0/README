@@ -1,0 +1,28 @@
+
+|_  _ |  _ _    |_ _  _ |_    ._ .._ .._  _ |
+|_)(_\|_/ (_\ - |_(-'(_.| | - ||||| |||||(_\|
+                                             
+    (C) 1995-2006 School of Computer Science,
+    The University of Manchester,
+    Manchester
+    M13 9PL, UK
+    email: balsa@cs.man.ac.uk
+
+balsa-tech-minimal is a Balsa technology-description package
+which generates Verilog netlists (from balsa-netlist) for
+a minimal technology consisting only of 2-input NOR gates.
+
+To install this package first install Balsa and add Balsa's bin
+directory to your path.  Then:
+
+1) ./configure
+
+This will use balsa-config to find the Balsa installation directory
+and the correct `tech' directory to install into.
+
+2) make install
+
+Installs this package and makes the new Balsa technology `minimal'
+
+To use this technology, set your BALSATECH environment variable
+to `minimal'.

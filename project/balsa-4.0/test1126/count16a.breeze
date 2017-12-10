@@ -1,0 +1,58 @@
+;;; Breeze intermediate file (list format)
+;;; Created: Tue Nov 28 11:42:12 2017
+;;; By: yoyo@yoyoChen (Linux)
+;;; With balsa-c version: 4.0
+;;; Command: balsa-c -b -I . count16a 
+
+;;; Imports
+(import "balsa.types.builtin")
+(import "balsa.types.synthesis")
+(import "balsa.types.basic")
+;;; Types
+
+;;; Constants
+
+;;; Parts
+(breeze-part "count16"
+  (ports
+    (sync-port "activate" passive (at 2 1 "count16a.balsa" 0))
+    (sync-port "aclk" active (at 2 20 "count16a.balsa" 0))
+    (port "count" active output (numeric-type #f 4) (at 2 44 "count16a.balsa" 0))
+  )
+  (attributes
+    (is-procedure)
+    (is-permanent)
+    (at 2 1 "count16a.balsa" 0)
+  )
+  (channels
+    (sync (at 5 2 "count16a.balsa" 1)) ; 1
+    (sync (at 6 7 "count16a.balsa" 1) (name "aclk")) ; 2
+    (push 4 (at 7 2 "count16a.balsa" 1) (name "count")) ; 3
+    (pull 4 (at 8 16 "count16a.balsa" 1) (name "count_reg")) ; 4
+    (pull 4 (at 8 30 "count16a.balsa" 1)) ; 5
+    (push 4 (at 8 12 "count16a.balsa" 1) (name "count_reg")) ; 6
+    (sync (at 8 12 "count16a.balsa" 1)) ; 7
+    (sync (at 8 12 "count16a.balsa" 1)) ; 8
+    (push 4 (at 8 30 "count16a.balsa" 1)) ; 9
+    (pull 4 (at 8 30 "count16a.balsa" 1)) ; 10
+    (pull 4 (at 7 11 "count16a.balsa" 1) (name "count_reg")) ; 11
+    (sync (at 7 8 "count16a.balsa" 1)) ; 12
+    (sync (at 6 12 "count16a.balsa" 1)) ; 13
+  )
+  (components
+    (component "$BrzVariable" (4 2 "count_reg[0..3]" "") (6 (11 4)) (at 3 1 "count16a.balsa" 0)) ; 0
+    (component "$BrzLoop" () (1 13) (at 5 2 "count16a.balsa" 0)) ; 1
+    (component "$BrzSequence" (4 "SSS") (13 (2 12 7 8)) (at 6 12 "count16a.balsa" 0)) ; 2
+    (component "$BrzFetch" (4 "false") (12 11 3) (at 7 8 "count16a.balsa" 0)) ; 3
+    (component "$BrzFetch" (4 "false") (7 5 9) (at 8 12 "count16a.balsa" 0)) ; 4
+    (component "$BrzFetch" (4 "false") (8 10 6) (at 8 12 "count16a.balsa" 0)) ; 5
+    (component "$BrzVariable" (4 1 "aux:count_reg" "") (9 (10)) (at 8 12 "count16a.balsa" 0)) ; 6
+    (component "$BrzBinaryFuncConstR" (4 4 1 "Add" "false" "false" "false" 1) (5 4) (at 8 26 "count16a.balsa" 0)) ; 7
+  )
+  (call-contexts
+    (call-context 1 "count16" (at 2 1 "count16a.balsa" 0) (at 0 0 "" 0) 0)
+  )
+)
+
+
+;;; EOF

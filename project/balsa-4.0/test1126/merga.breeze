@@ -1,0 +1,58 @@
+;;; Breeze intermediate file (list format)
+;;; Created: Tue Nov 28 11:42:07 2017
+;;; By: yoyo@yoyoChen (Linux)
+;;; With balsa-c version: 4.0
+;;; Command: balsa-c -b -I . merga 
+
+;;; Imports
+(import "balsa.types.builtin")
+(import "balsa.types.synthesis")
+(import "balsa.types.basic")
+;;; Types
+
+;;; Constants
+
+;;; Parts
+(breeze-part "merge"
+  (ports
+    (sync-port "activate" passive (at 3 1 "merga.balsa" 0))
+    (port "a" passive input (numeric-type #f 8) (at 3 29 "merga.balsa" 0))
+    (port "b" passive input (numeric-type #f 8) (at 3 29 "merga.balsa" 0))
+    (port "c" active output (numeric-type #f 8) (at 3 46 "merga.balsa" 0))
+  )
+  (attributes
+    (is-procedure)
+    (is-permanent)
+    (at 3 1 "merga.balsa" 0)
+  )
+  (channels
+    (sync (at 5 2 "merga.balsa" 1)) ; 1
+    (push 8 (at 6 9 "merga.balsa" 1) (name "a")) ; 2
+    (push 8 (at 7 4 "merga.balsa" 1) (name "b")) ; 3
+    (push 8 (at 7 11 "merga.balsa" 1) (name "c")) ; 4
+    (pull 8 (at 6 21 "merga.balsa" 1) (name "a")) ; 5
+    (push 8 (at 6 16 "merga.balsa" 1) (name "c")) ; 6
+    (sync (at 6 18 "merga.balsa" 1)) ; 7
+    (pull 8 (at 7 16 "merga.balsa" 1) (name "b")) ; 8
+    (push 8 (at 7 11 "merga.balsa" 1) (name "c")) ; 9
+    (sync (at 7 13 "merga.balsa" 1)) ; 10
+    (sync (at 6 2 "merga.balsa" 1)) ; 11
+    (sync (at 6 2 "merga.balsa" 1)) ; 12
+    (sync (at 6 2 "merga.balsa" 1)) ; 13
+  )
+  (components
+    (component "$BrzLoop" () (1 13) (at 5 2 "merga.balsa" 0)) ; 0
+    (component "$BrzDecisionWait" (2) (13 (12 11) (7 10)) (at 6 2 "merga.balsa" 0)) ; 1
+    (component "$BrzFalseVariable" (8 1 "") (2 12 (5))) ; 2
+    (component "$BrzFalseVariable" (8 1 "") (3 11 (8))) ; 3
+    (component "$BrzCallMux" (8 2) ((9 6) 4) (at 6 2 "merga.balsa" 0)) ; 4
+    (component "$BrzFetch" (8 "false") (10 8 9) (at 7 13 "merga.balsa" 0)) ; 5
+    (component "$BrzFetch" (8 "false") (7 5 6) (at 6 18 "merga.balsa" 0)) ; 6
+  )
+  (call-contexts
+    (call-context 1 "merge" (at 3 1 "merga.balsa" 0) (at 0 0 "" 0) 0)
+  )
+)
+
+
+;;; EOF

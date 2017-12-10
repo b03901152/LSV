@@ -1,0 +1,6 @@
+read PA1_testcase/c880.blif
+# show
+# strash
+# collapse
+MAJ_find
+# show_bdd

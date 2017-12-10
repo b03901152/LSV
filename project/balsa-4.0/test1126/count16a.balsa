@@ -1,0 +1,10 @@
+import [balsa.types.basic]
+procedure count16 (sync aclk; output count : nibble) is
+variable count_reg : nibble
+begin
+ loop
+ sync aclk ;
+ count <- count_reg ;
+ count_reg := (count_reg + 1 as nibble)
+ end
+end

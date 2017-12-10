@@ -1,0 +1,11 @@
+import [balsa.types.basic]
+procedure buffer1 (input i,j : byte; output o : byte) is
+ variable x : byte
+ variable y : byte
+begin
+ loop
+    i -> x;
+    j -> y;
+    o <- x and y
+ end
+end

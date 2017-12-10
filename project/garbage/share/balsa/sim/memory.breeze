@@ -1,0 +1,198 @@
+;;; Breeze intermediate file (list format)
+;;; Created: Thu Oct 28 22:17:55 2010
+;;; By: janinl@bluu.cs.man.ac.uk (Linux)
+;;; With balsa-c version: 4.0
+;;; Command: ../../../src/balsa-c/balsa-c -e -I ../../../share -b -i memory.balsa 
+
+;;; Imports
+(import "balsa.types.basic")
+;;; Types
+
+(type "BalsaMemory" (builtin-type))
+(type "BalsaMemoryParams" (record-type 64 ("addressWidth" (numeric-type #f 32)) ("dataWidth" (numeric-type #f 32)) ))
+;;; Constants
+
+;;; Parts
+(breeze-part "BalsaMemoryNew"
+  (ports
+    (port "activate" passive output (named-type "BalsaMemory") (at 38 1 "memory.balsa" 0))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 38 1 "memory.balsa" 0)
+  )
+  (channels
+  )
+  (components)
+)
+
+(balsa
+  (builtin-function-decl (at 41 1 "memory.balsa" 0) "BalsaMemoryRead"
+    (formal-ports (at 41 44 "memory.balsa" 0) 
+      (param-port (at 41 44 "memory.balsa" 0) (idents (at 41 37 "memory.balsa" 0) "params") (existing-type (at 41 46 "memory.balsa" 0) "BalsaMemoryParams"))
+      (value-port (at 42 9 "memory.balsa" 0) (idents (at 42 2 "memory.balsa" 0) "memory") (existing-type (at 42 11 "memory.balsa" 0) "BalsaMemory"))
+      (value-port (at 42 32 "memory.balsa" 0) (idents (at 42 24 "memory.balsa" 0) "address") (numeric-type (at 42 54 "memory.balsa" 0) #f (record-elem-extract-expr (at 42 40 "memory.balsa" 0) (ident-expr (at 42 34 "memory.balsa" 0) "params") "addressWidth")))
+    )
+    (numeric-type (at 42 90 "memory.balsa" 0) #f (record-elem-extract-expr (at 42 79 "memory.balsa" 0) (ident-expr (at 42 73 "memory.balsa" 0) "params") "dataWidth"))
+  )
+)
+
+(balsa
+  (builtin-function-decl (at 43 1 "memory.balsa" 0) "BalsaMemoryWrite"
+    (formal-ports (at 43 45 "memory.balsa" 0) 
+      (param-port (at 43 45 "memory.balsa" 0) (idents (at 43 38 "memory.balsa" 0) "params") (existing-type (at 43 47 "memory.balsa" 0) "BalsaMemoryParams"))
+      (value-port (at 44 9 "memory.balsa" 0) (idents (at 44 2 "memory.balsa" 0) "memory") (existing-type (at 44 11 "memory.balsa" 0) "BalsaMemory"))
+      (value-port (at 44 32 "memory.balsa" 0) (idents (at 44 24 "memory.balsa" 0) "address") (numeric-type (at 44 54 "memory.balsa" 0) #f (record-elem-extract-expr (at 44 40 "memory.balsa" 0) (ident-expr (at 44 34 "memory.balsa" 0) "params") "addressWidth")))
+      (value-port (at 44 65 "memory.balsa" 0) (idents (at 44 60 "memory.balsa" 0) "data") (numeric-type (at 44 84 "memory.balsa" 0) #f (record-elem-extract-expr (at 44 73 "memory.balsa" 0) (ident-expr (at 44 67 "memory.balsa" 0) "params") "dataWidth")))
+    )
+    (existing-type (at 44 103 "memory.balsa" 0) "BalsaMemory")
+  )
+)
+
+(balsa
+  (procedure-decl (at 49 1 "memory.balsa" 0) "BalsaMemory"
+    (formal-ports (at 50 19 "memory.balsa" 0) 
+      (param-port (at 50 19 "memory.balsa" 0) (idents (at 50 12 "memory.balsa" 0) "params") (existing-type (at 50 21 "memory.balsa" 0) "BalsaMemoryParams"))
+      (port (at 51 15 "memory.balsa" 0) default input (idents (at 51 8 "memory.balsa" 0) "memory") (existing-type (at 51 17 "memory.balsa" 0) "BalsaMemory"))
+      (port (at 52 16 "memory.balsa" 0) default input (idents (at 52 8 "memory.balsa" 0) "address") (numeric-type (at 52 38 "memory.balsa" 0) #f (record-elem-extract-expr (at 52 24 "memory.balsa" 0) (ident-expr (at 52 18 "memory.balsa" 0) "params") "addressWidth")))
+      (port (at 53 12 "memory.balsa" 0) default input (idents (at 53 8 "memory.balsa" 0) "rNw") (existing-type (at 53 14 "memory.balsa" 0) "bit"))
+      (port (at 54 14 "memory.balsa" 0) default input (idents (at 54 8 "memory.balsa" 0) "write") (numeric-type (at 54 33 "memory.balsa" 0) #f (record-elem-extract-expr (at 54 22 "memory.balsa" 0) (ident-expr (at 54 16 "memory.balsa" 0) "params") "dataWidth")))
+      (port (at 55 14 "memory.balsa" 0) default output (idents (at 55 9 "memory.balsa" 0) "read") (numeric-type (at 55 33 "memory.balsa" 0) #f (record-elem-extract-expr (at 55 22 "memory.balsa" 0) (ident-expr (at 55 16 "memory.balsa" 0) "params") "dataWidth")))
+    )
+    (block (at 58 1 "memory.balsa" 0) 
+      (decls (at 57 2 "memory.balsa" 0) 
+        (variable-decl (at 57 2 "memory.balsa" 0) (idents (at 57 11 "memory.balsa" 0) "memory_v") (existing-type (at 57 22 "memory.balsa" 0) "BalsaMemory"))
+      )
+      (sequential (at 59 20 "memory.balsa" 0) 
+        (input (at 59 9 "memory.balsa" 0) (ident-lvalue (at 59 2 "memory.balsa" 0) "memory") (ident-lvalue (at 59 12 "memory.balsa" 0) "memory_v"))
+        (loop (at 60 2 "memory.balsa" 0) 
+          (input-enclose (at 61 16 "memory.balsa" 0) 
+            (lvalues (at 61 12 "memory.balsa" 0) 
+              (channel-lvalue (at 61 12 "memory.balsa" 0) (ident-lvalue (at 61 12 "memory.balsa" 0) "rNw"))
+              (channel-lvalue (at 61 3 "memory.balsa" 0) (ident-lvalue (at 61 3 "memory.balsa" 0) "address"))
+            )
+            (if-else (at 62 4 "memory.balsa" 0) 
+              (guards (at 62 11 "memory.balsa" 0) 
+                (guard (at 62 11 "memory.balsa" 0) (ident-expr (at 62 7 "memory.balsa" 0) "rNw") (output (at 63 10 "memory.balsa" 0) (ident-lvalue (at 63 5 "memory.balsa" 0) "read") (function-call-expr (at 63 29 "memory.balsa" 0) "BalsaMemoryRead"
+                    (function-params (at 63 30 "memory.balsa" 0) 
+                      (expr-func-param (at 63 30 "memory.balsa" 0) (ident-expr (at 63 30 "memory.balsa" 0) "params"))
+                      (expr-func-param (at 63 38 "memory.balsa" 0) (ident-expr (at 63 38 "memory.balsa" 0) "memory_v"))
+                      (expr-func-param (at 63 48 "memory.balsa" 0) (ident-expr (at 63 48 "memory.balsa" 0) "address"))
+                    )
+                  )))
+              )
+              (input-enclose (at 65 11 "memory.balsa" 0) 
+                (lvalues (at 65 5 "memory.balsa" 0) 
+                  (channel-lvalue (at 65 5 "memory.balsa" 0) (ident-lvalue (at 65 5 "memory.balsa" 0) "write"))
+                )
+                (sink (at 66 6 "memory.balsa" 0) (function-call-expr (at 66 28 "memory.balsa" 0) "BalsaMemoryWrite"
+                    (function-params (at 66 29 "memory.balsa" 0) 
+                      (expr-func-param (at 66 29 "memory.balsa" 0) (ident-expr (at 66 29 "memory.balsa" 0) "params"))
+                      (expr-func-param (at 66 37 "memory.balsa" 0) (ident-expr (at 66 37 "memory.balsa" 0) "memory_v"))
+                      (expr-func-param (at 66 47 "memory.balsa" 0) (ident-expr (at 66 47 "memory.balsa" 0) "address"))
+                      (expr-func-param (at 66 56 "memory.balsa" 0) (ident-expr (at 66 56 "memory.balsa" 0) "write"))
+                    )
+                  ))
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+(breeze-part "B1632"
+  (ports
+    (sync-port "activate" passive (at 73 33 "memory.balsa" 0))
+    (port "memory" active input (named-type "BalsaMemory") (at 51 15 "memory.balsa" 0))
+    (port "address" active input (numeric-type #f 16) (at 52 16 "memory.balsa" 0))
+    (port "rNw" active input (numeric-type #f 1) (at 53 12 "memory.balsa" 0))
+    (port "write" active input (numeric-type #f 32) (at 54 14 "memory.balsa" 0))
+    (port "read" active output (numeric-type #f 32) (at 55 14 "memory.balsa" 0))
+  )
+  (attributes
+    (is-procedure)
+    (is-permanent)
+    (at 73 33 "memory.balsa" 0)
+  )
+  (channels
+    (sync (at 59 20 "memory.balsa" 1)) ; 1
+    (pull 64 (at 59 2 "memory.balsa" 1) (name "memory") (type (named-type "BalsaMemory"))) ; 2
+    (pull 16 (at 61 3 "memory.balsa" 1) (name "address")) ; 3
+    (pull 1 (at 61 12 "memory.balsa" 1) (name "rNw")) ; 4
+    (pull 32 (at 65 5 "memory.balsa" 1) (name "write")) ; 5
+    (push 32 (at 63 5 "memory.balsa" 1) (name "read")) ; 6
+    (pull 32 (at 66 56 "memory.balsa" 1) (name "write")) ; 7
+    (pull 16 (at 66 47 "memory.balsa" 1) (name "address")) ; 8
+    (pull 64 (at 66 37 "memory.balsa" 1) (name "memory_v") (type (named-type "BalsaMemory"))) ; 9
+    (pull 64 (at 66 28 "memory.balsa" 1) (type (named-type "BalsaMemory"))) ; 10
+    (push 64 (at 66 6 "memory.balsa" 1) (type (named-type "BalsaMemory"))) ; 11
+    (sync (at 65 11 "memory.balsa" 1)) ; 12
+    (push 32 (at 65 5 "memory.balsa" 1) (name "write")) ; 13
+    (sync (at 65 11 "memory.balsa" 1)) ; 14
+    (pull 16 (at 63 48 "memory.balsa" 1) (name "address")) ; 15
+    (pull 64 (at 63 38 "memory.balsa" 1) (name "memory_v") (type (named-type "BalsaMemory"))) ; 16
+    (pull 32 (at 63 29 "memory.balsa" 1)) ; 17
+    (sync (at 63 10 "memory.balsa" 1)) ; 18
+    (pull 1 (at 62 7 "memory.balsa" 1) (name "rNw")) ; 19
+    (push 1 (at 62 4 "memory.balsa" 1)) ; 20
+    (sync (at 61 16 "memory.balsa" 1)) ; 21
+    (push 16 (at 61 3 "memory.balsa" 1) (name "address")) ; 22
+    (sync (at 61 16 "memory.balsa" 1)) ; 23
+    (sync (at 61 16 "memory.balsa" 1)) ; 24
+    (push 1 (at 61 12 "memory.balsa" 1) (name "rNw")) ; 25
+    (sync (at 61 16 "memory.balsa" 1)) ; 26
+    (sync (at 61 16 "memory.balsa" 1)) ; 27
+    (sync (at 61 16 "memory.balsa" 1)) ; 28
+    (sync (at 60 2 "memory.balsa" 1)) ; 29
+    (push 64 (at 59 9 "memory.balsa" 1) (name "memory_v") (type (named-type "BalsaMemory"))) ; 30
+    (sync (at 59 9 "memory.balsa" 1)) ; 31
+  )
+  (components
+    (component "$BrzBuiltinVariable" (2 "memory_v[0..63]") (30 (16 9)) (at 57 2 "memory.balsa" 0)) ; 0
+    (component "$BrzSequence" (2 "T") (1 (31 29)) (at 59 20 "memory.balsa" 0)) ; 1
+    (component "$BrzFetch" (64 "false") (31 2 30) (at 59 9 "memory.balsa" 0)) ; 2
+    (component "$BrzLoop" () (29 27) (at 60 2 "memory.balsa" 0)) ; 3
+    (component "$BrzSynch" (2) ((26 23) 28) (at 61 16 "memory.balsa" 0)) ; 4
+    (component "$BrzFork" (2) (27 (24 21)) (at 61 16 "memory.balsa" 0)) ; 5
+    (component "$BrzFalseVariable" (1 1 "") (25 26 (19))) ; 6
+    (component "$BrzFetch" (1 "false") (24 4 25) (at 61 16 "memory.balsa" 0)) ; 7
+    (component "$BrzFalseVariable" (16 2 "") (22 23 (15 8))) ; 8
+    (component "$BrzFetch" (16 "false") (21 3 22) (at 61 16 "memory.balsa" 0)) ; 9
+    (component "$BrzCase" (1 2 "0;1") (20 (12 18)) (at 62 4 "memory.balsa" 0)) ; 10
+    (component "$BrzFetch" (1 "false") (28 19 20) (at 62 4 "memory.balsa" 0)) ; 11
+    (component "$BrzFetch" (32 "false") (18 17 6) (at 63 10 "memory.balsa" 0)) ; 12
+    (undeclared-component "BalsaMemoryRead" (137438953488) (17 16 15)
+      (implements "is-builtin-function" "BalsaMemoryRead")
+      (parameters
+        (parameter "params" (named-type "BalsaMemoryParams"))
+      )
+      (ports
+        (port "activate" passive output (numeric-type #f 32))
+        (port "memory" active input (named-type "BalsaMemory"))
+        (port "address" active input (numeric-type #f 16))
+      ) (at 63 29 "memory.balsa" 0)) ; 13
+    (component "$BrzFalseVariable" (32 1 "") (13 14 (7))) ; 14
+    (component "$BrzFetch" (32 "false") (12 5 13) (at 65 11 "memory.balsa" 0)) ; 15
+    (component "$BrzFetch" (64 "false") (14 10 11) (at 66 6 "memory.balsa" 0)) ; 16
+    (component "$BrzContinuePush" (64) (11) (at 66 6 "memory.balsa" 0)) ; 17
+    (undeclared-component "BalsaMemoryWrite" (137438953488) (10 9 8 7)
+      (implements "is-builtin-function" "BalsaMemoryWrite")
+      (parameters
+        (parameter "params" (named-type "BalsaMemoryParams"))
+      )
+      (ports
+        (port "activate" passive output (named-type "BalsaMemory"))
+        (port "memory" active input (named-type "BalsaMemory"))
+        (port "address" active input (numeric-type #f 16))
+        (port "data" active input (numeric-type #f 32))
+      ) (at 66 28 "memory.balsa" 0)) ; 18
+  )
+  (call-contexts
+    (call-context 1 "BalsaMemory-0" (at 73 33 "memory.balsa" 0) (at 0 0 "" 0) 0)
+  )
+)
+
+
+;;; EOF

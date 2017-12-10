@@ -1,0 +1,12 @@
+;;; `example.map'
+;;; Balsa cell name mapping file
+;;; Created: Tue Nov 28 12:33:38 CST 2017
+;;; By: yoyo@yoyoChen (Linux)
+;;; With net-net version: 4.0
+
+;;; current mapping count
+2
+
+;;; current mappings 
+("BrzBinaryFuncConstR_4_4_1_s3_Add_s5_false_s5_false_s5_false_1" . "BrzBinaryFuncConstR_4_4_1_s3_Add_s5_false__m1m")
+("BrzBinaryFunc_8_8_8_s3_And_s5_false_s5_false_s5_false" . "BrzBinaryFunc_8_8_8_s3_And_s5_false_s5_fal_m2m")

@@ -1,0 +1,508 @@
+;;; Breeze intermediate file (list format)
+;;; Created: Sun Nov 26 16:49:28 2017
+;;; By: root@yoyoChen (Linux)
+;;; With balsa-c version: 4.0
+;;; Command: ../../../src/balsa-c/balsa-c -e -I ../../../share -b -i buffers.balsa 
+
+;;; Imports
+(import "balsa.types.basic")
+;;; Types
+
+;;; Constants
+
+;;; Parts
+(balsa
+  (procedure-decl (at 29 1 "buffers.balsa" 0) "Buffer"
+    (formal-ports (at 30 14 "buffers.balsa" 0) 
+      (type-param-port (at 30 14 "buffers.balsa" 0) (idents (at 30 12 "buffers.balsa" 0) "X"))
+      (port (at 31 10 "buffers.balsa" 0) default input (idents (at 31 8 "buffers.balsa" 0) "i") (existing-type (at 31 12 "buffers.balsa" 0) "X"))
+      (port (at 32 11 "buffers.balsa" 0) default output (idents (at 32 9 "buffers.balsa" 0) "o") (existing-type (at 32 13 "buffers.balsa" 0) "X"))
+    )
+    (block (at 34 1 "buffers.balsa" 0) 
+      (decls (at 33 7 "buffers.balsa" 0) 
+        (variable-decl (at 33 7 "buffers.balsa" 0) (idents (at 33 16 "buffers.balsa" 0) "x") (existing-type (at 33 20 "buffers.balsa" 0) "X"))
+      )
+      (loop (at 35 2 "buffers.balsa" 0) 
+        (sequential (at 36 10 "buffers.balsa" 0) 
+          (input (at 36 5 "buffers.balsa" 0) (ident-lvalue (at 36 3 "buffers.balsa" 0) "i") (ident-lvalue (at 36 8 "buffers.balsa" 0) "x"))
+          (output (at 37 5 "buffers.balsa" 0) (ident-lvalue (at 37 3 "buffers.balsa" 0) "o") (ident-expr (at 37 8 "buffers.balsa" 0) "x"))
+        )
+      )
+    )
+  )
+)
+
+(balsa
+  (procedure-decl (at 42 1 "buffers.balsa" 0) "InitialisedBuffer"
+    (formal-ports (at 43 14 "buffers.balsa" 0) 
+      (type-param-port (at 43 14 "buffers.balsa" 0) (idents (at 43 12 "buffers.balsa" 0) "X"))
+      (param-port (at 44 17 "buffers.balsa" 0) (idents (at 44 12 "buffers.balsa" 0) "init") (existing-type (at 44 19 "buffers.balsa" 0) "X"))
+      (port (at 45 10 "buffers.balsa" 0) default input (idents (at 45 8 "buffers.balsa" 0) "i") (existing-type (at 45 12 "buffers.balsa" 0) "X"))
+      (port (at 46 11 "buffers.balsa" 0) default output (idents (at 46 9 "buffers.balsa" 0) "o") (existing-type (at 46 13 "buffers.balsa" 0) "X"))
+    )
+    (block (at 48 1 "buffers.balsa" 0) 
+      (decls (at 47 7 "buffers.balsa" 0) 
+        (variable-decl (at 47 7 "buffers.balsa" 0) (idents (at 47 16 "buffers.balsa" 0) "x") (existing-type (at 47 20 "buffers.balsa" 0) "X"))
+      )
+      (sequential (at 49 12 "buffers.balsa" 0) 
+        (assign (at 49 4 "buffers.balsa" 0) (ident-lvalue (at 49 2 "buffers.balsa" 0) "x") (ident-expr (at 49 7 "buffers.balsa" 0) "init"))
+        (loop (at 50 2 "buffers.balsa" 0) 
+          (sequential (at 51 10 "buffers.balsa" 0) 
+            (output (at 51 5 "buffers.balsa" 0) (ident-lvalue (at 51 3 "buffers.balsa" 0) "o") (ident-expr (at 51 8 "buffers.balsa" 0) "x"))
+            (input (at 52 5 "buffers.balsa" 0) (ident-lvalue (at 52 3 "buffers.balsa" 0) "i") (ident-lvalue (at 52 8 "buffers.balsa" 0) "x"))
+          )
+        )
+      )
+    )
+  )
+)
+
+(breeze-part "SyncBuffer"
+  (ports
+    (sync-port "activate" passive (at 57 1 "buffers.balsa" 0))
+    (sync-port "i" active (at 58 2 "buffers.balsa" 0))
+    (sync-port "o" active (at 59 2 "buffers.balsa" 0))
+  )
+  (attributes
+    (is-procedure)
+    (is-permanent)
+    (at 57 1 "buffers.balsa" 0)
+  )
+  (channels
+    (sync (at 61 2 "buffers.balsa" 1)) ; 1
+    (sync (at 62 8 "buffers.balsa" 1) (name "i")) ; 2
+    (sync (at 63 8 "buffers.balsa" 1) (name "o")) ; 3
+    (sync (at 62 10 "buffers.balsa" 1)) ; 4
+  )
+  (components
+    (component "$BrzLoop" () (1 4) (at 61 2 "buffers.balsa" 0)) ; 0
+    (component "$BrzSequence" (2 "S") (4 (2 3)) (at 62 10 "buffers.balsa" 0)) ; 1
+  )
+  (call-contexts
+    (call-context 1 "SyncBuffer" (at 57 1 "buffers.balsa" 0) (at 0 0 "" 0) 0)
+  )
+)
+
+(balsa
+  (procedure-decl (at 68 1 "buffers.balsa" 0) "PushBuffer"
+    (formal-ports (at 69 14 "buffers.balsa" 0) 
+      (type-param-port (at 69 14 "buffers.balsa" 0) (idents (at 69 12 "buffers.balsa" 0) "X"))
+      (port (at 70 10 "buffers.balsa" 0) default input (idents (at 70 8 "buffers.balsa" 0) "i") (existing-type (at 70 12 "buffers.balsa" 0) "X"))
+      (port (at 71 11 "buffers.balsa" 0) default output (idents (at 71 9 "buffers.balsa" 0) "o") (existing-type (at 71 13 "buffers.balsa" 0) "X"))
+    )
+    (block (at 73 1 "buffers.balsa" 0) 
+      (decls (at 72 7 "buffers.balsa" 0) 
+        (variable-decl (at 72 7 "buffers.balsa" 0) (idents (at 72 16 "buffers.balsa" 0) "x") (existing-type (at 72 20 "buffers.balsa" 0) "X"))
+      )
+      (loop (at 74 2 "buffers.balsa" 0) 
+        (sequential (at 75 28 "buffers.balsa" 0) 
+          (select (at 75 3 "buffers.balsa" 0) (channel-guards (at 75 12 "buffers.balsa" 0) 
+              (channel-guard (at 75 12 "buffers.balsa" 0) (lvalues (at 75 10 "buffers.balsa" 0) 
+                  (channel-lvalue (at 75 10 "buffers.balsa" 0) (ident-lvalue (at 75 10 "buffers.balsa" 0) "i"))
+                )
+                (assign (at 75 19 "buffers.balsa" 0) (ident-lvalue (at 75 17 "buffers.balsa" 0) "x") (ident-expr (at 75 22 "buffers.balsa" 0) "i"))
+              )
+            )
+          )
+          (output (at 76 5 "buffers.balsa" 0) (ident-lvalue (at 76 3 "buffers.balsa" 0) "o") (ident-expr (at 76 8 "buffers.balsa" 0) "x"))
+        )
+      )
+    )
+  )
+)
+
+(balsa
+  (procedure-decl (at 81 1 "buffers.balsa" 0) "PushInitialisedBuffer"
+    (formal-ports (at 82 14 "buffers.balsa" 0) 
+      (type-param-port (at 82 14 "buffers.balsa" 0) (idents (at 82 12 "buffers.balsa" 0) "X"))
+      (param-port (at 83 17 "buffers.balsa" 0) (idents (at 83 12 "buffers.balsa" 0) "init") (existing-type (at 83 19 "buffers.balsa" 0) "X"))
+      (port (at 84 10 "buffers.balsa" 0) default input (idents (at 84 8 "buffers.balsa" 0) "i") (existing-type (at 84 12 "buffers.balsa" 0) "X"))
+      (port (at 85 11 "buffers.balsa" 0) default output (idents (at 85 9 "buffers.balsa" 0) "o") (existing-type (at 85 13 "buffers.balsa" 0) "X"))
+    )
+    (block (at 87 1 "buffers.balsa" 0) 
+      (decls (at 86 7 "buffers.balsa" 0) 
+        (variable-decl (at 86 7 "buffers.balsa" 0) (idents (at 86 16 "buffers.balsa" 0) "x") (existing-type (at 86 20 "buffers.balsa" 0) "X"))
+      )
+      (sequential (at 88 12 "buffers.balsa" 0) 
+        (assign (at 88 4 "buffers.balsa" 0) (ident-lvalue (at 88 2 "buffers.balsa" 0) "x") (ident-expr (at 88 7 "buffers.balsa" 0) "init"))
+        (loop (at 89 2 "buffers.balsa" 0) 
+          (sequential (at 90 10 "buffers.balsa" 0) 
+            (output (at 90 5 "buffers.balsa" 0) (ident-lvalue (at 90 3 "buffers.balsa" 0) "o") (ident-expr (at 90 8 "buffers.balsa" 0) "x"))
+            (select (at 91 3 "buffers.balsa" 0) (channel-guards (at 91 12 "buffers.balsa" 0) 
+                (channel-guard (at 91 12 "buffers.balsa" 0) (lvalues (at 91 10 "buffers.balsa" 0) 
+                    (channel-lvalue (at 91 10 "buffers.balsa" 0) (ident-lvalue (at 91 10 "buffers.balsa" 0) "i"))
+                  )
+                  (assign (at 91 19 "buffers.balsa" 0) (ident-lvalue (at 91 17 "buffers.balsa" 0) "x") (ident-expr (at 91 22 "buffers.balsa" 0) "i"))
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+(breeze-part "PushSyncBuffer"
+  (ports
+    (sync-port "activate" passive (at 96 1 "buffers.balsa" 0))
+    (sync-port "i" passive (at 97 2 "buffers.balsa" 0))
+    (sync-port "o" active (at 98 2 "buffers.balsa" 0))
+  )
+  (attributes
+    (is-procedure)
+    (is-permanent)
+    (at 96 1 "buffers.balsa" 0)
+  )
+  (channels
+    (sync (at 100 2 "buffers.balsa" 2)) ; 1
+    (sync (at 101 10 "buffers.balsa" 2) (name "i")) ; 2
+    (sync (at 102 8 "buffers.balsa" 2) (name "o")) ; 3
+    (sync (at 101 17 "buffers.balsa" 2)) ; 4
+    (sync (at 101 3 "buffers.balsa" 2)) ; 5
+    (sync (at 101 30 "buffers.balsa" 2)) ; 6
+  )
+  (components
+    (component "$BrzLoop" () (1 6) (at 100 2 "buffers.balsa" 0)) ; 0
+    (component "$BrzSequence" (2 "S") (6 (5 3)) (at 101 30 "buffers.balsa" 0)) ; 1
+    (component "$BrzDecisionWait" (1) (5 (2) (4)) (at 101 3 "buffers.balsa" 0)) ; 2
+    (component "$BrzContinue" () (4) (at 101 17 "buffers.balsa" 0)) ; 3
+  )
+  (call-contexts
+    (call-context 2 "PushSyncBuffer" (at 96 1 "buffers.balsa" 0) (at 0 0 "" 0) 0)
+  )
+)
+
+(balsa
+  (procedure-decl (at 108 1 "buffers.balsa" 0) "BufferN"
+    (formal-ports (at 109 14 "buffers.balsa" 0) 
+      (type-param-port (at 109 14 "buffers.balsa" 0) (idents (at 109 12 "buffers.balsa" 0) "X"))
+      (param-port (at 110 19 "buffers.balsa" 0) (idents (at 110 12 "buffers.balsa" 0) "places") (existing-type (at 110 21 "buffers.balsa" 0) "cardinal"))
+      (port (at 111 10 "buffers.balsa" 0) default input (idents (at 111 8 "buffers.balsa" 0) "i") (existing-type (at 111 12 "buffers.balsa" 0) "X"))
+      (port (at 112 11 "buffers.balsa" 0) default output (idents (at 112 9 "buffers.balsa" 0) "o") (existing-type (at 112 13 "buffers.balsa" 0) "X"))
+    )
+    (block (at 114 1 "buffers.balsa" 0) 
+      (decls (at 113 7 "buffers.balsa" 0) 
+        (procedure-param-alias-decl (at 113 7 "buffers.balsa" 0) "buffer" "Buffer" (procedure-params (at 113 35 "buffers.balsa" 0) 
+            (expr-proc-param (at 113 35 "buffers.balsa" 0) (ident-expr (at 113 35 "buffers.balsa" 0) "X"))
+          ))
+      )
+      (if (at 115 2 "buffers.balsa" 0) 
+        (guards (at 115 16 "buffers.balsa" 0) 
+          (guard (at 115 16 "buffers.balsa" 0) (binary-expr (at 115 12 "buffers.balsa" 0) "Equals" (ident-expr (at 115 5 "buffers.balsa" 0) "places") (literal-expr (at 115 14 "buffers.balsa" 0) 0)) (print (at 116 3 "buffers.balsa" 0) (ident-expr (at 116 9 "buffers.balsa" 0) "error") (exprs (at 116 16 "buffers.balsa" 0) 
+                (string-expr (at 116 16 "buffers.balsa" 0) "BufferN must have at least 1 place")
+              )))
+          (guard (at 117 16 "buffers.balsa" 0) (binary-expr (at 117 12 "buffers.balsa" 0) "Equals" (ident-expr (at 117 5 "buffers.balsa" 0) "places") (literal-expr (at 117 14 "buffers.balsa" 0) 1)) (procedure-call (at 118 10 "buffers.balsa" 0) "buffer"
+              (procedure-params (at 118 11 "buffers.balsa" 0) 
+                (expr-proc-param (at 118 11 "buffers.balsa" 0) (ident-expr (at 118 11 "buffers.balsa" 0) "i"))
+                (expr-proc-param (at 118 14 "buffers.balsa" 0) (ident-expr (at 118 14 "buffers.balsa" 0) "o"))
+              )
+            ))
+          (guard (at 119 17 "buffers.balsa" 0) (binary-expr (at 119 12 "buffers.balsa" 0) "GreaterOrEquals" (ident-expr (at 119 5 "buffers.balsa" 0) "places") (literal-expr (at 119 15 "buffers.balsa" 0) 2)) (block-command (at 0 0 "" 0) 
+              (block (at 120 3 "buffers.balsa" 0) 
+              (decls (at 120 30 "buffers.balsa" 0) 
+                (arrayed-channel-decl (at 120 30 "buffers.balsa" 0) 
+                  (idents (at 120 38 "buffers.balsa" 0) "ichan") (range2 (at 120 16 "buffers.balsa" 0) (literal-expr (at 120 15 "buffers.balsa" 0) 1) (binary-expr (at 120 24 "buffers.balsa" 0) "Subtract" (ident-expr (at 120 18 "buffers.balsa" 0) "places") (literal-expr (at 120 25 "buffers.balsa" 0) 1))) (existing-type (at 120 46 "buffers.balsa" 0) "X"))
+              )
+              (parallel (at 127 8 "buffers.balsa" 0) 
+                (parallel (at 122 25 "buffers.balsa" 0) 
+                  (procedure-call (at 122 11 "buffers.balsa" 0) "buffer"
+                    (procedure-params (at 122 12 "buffers.balsa" 0) 
+                      (expr-proc-param (at 122 12 "buffers.balsa" 0) (ident-expr (at 122 12 "buffers.balsa" 0) "i"))
+                      (expr-proc-param (at 122 20 "buffers.balsa" 0) (array-extract-expr (at 122 20 "buffers.balsa" 0) (ident-expr (at 122 15 "buffers.balsa" 0) "ichan") (literal-expr (at 122 21 "buffers.balsa" 0) 1)))
+                    )
+                  )
+                  (if (at 123 4 "buffers.balsa" 0) 
+                    (guards (at 123 18 "buffers.balsa" 0) 
+                      (guard (at 123 18 "buffers.balsa" 0) (binary-expr (at 123 14 "buffers.balsa" 0) "GreaterThan" (ident-expr (at 123 7 "buffers.balsa" 0) "places") (literal-expr (at 123 16 "buffers.balsa" 0) 2)) (for (at 124 5 "buffers.balsa" 0) parallel"i" (range2 (at 124 18 "buffers.balsa" 0) (literal-expr (at 124 17 "buffers.balsa" 0) 1) (binary-expr (at 124 26 "buffers.balsa" 0) "Subtract" (ident-expr (at 124 20 "buffers.balsa" 0) "places") (literal-expr (at 124 27 "buffers.balsa" 0) 2)))
+                          (procedure-call (at 125 13 "buffers.balsa" 0) "buffer"
+                            (procedure-params (at 125 19 "buffers.balsa" 0) 
+                              (expr-proc-param (at 125 19 "buffers.balsa" 0) (array-extract-expr (at 125 19 "buffers.balsa" 0) (ident-expr (at 125 14 "buffers.balsa" 0) "ichan") (ident-expr (at 125 20 "buffers.balsa" 0) "i")))
+                              (expr-proc-param (at 125 29 "buffers.balsa" 0) (array-extract-expr (at 125 29 "buffers.balsa" 0) (ident-expr (at 125 24 "buffers.balsa" 0) "ichan") (binary-expr (at 125 31 "buffers.balsa" 0) "Add" (ident-expr (at 125 30 "buffers.balsa" 0) "i") (literal-expr (at 125 32 "buffers.balsa" 0) 1))))
+                            )
+                          )
+                        ))
+                    )
+                  )
+                )
+                (procedure-call (at 128 11 "buffers.balsa" 0) "buffer"
+                  (procedure-params (at 128 17 "buffers.balsa" 0) 
+                    (expr-proc-param (at 128 17 "buffers.balsa" 0) (array-extract-expr (at 128 17 "buffers.balsa" 0) (ident-expr (at 128 12 "buffers.balsa" 0) "ichan") (binary-expr (at 128 24 "buffers.balsa" 0) "Subtract" (ident-expr (at 128 18 "buffers.balsa" 0) "places") (literal-expr (at 128 25 "buffers.balsa" 0) 1))))
+                    (expr-proc-param (at 128 29 "buffers.balsa" 0) (ident-expr (at 128 29 "buffers.balsa" 0) "o"))
+                  )
+                )
+              )
+            )
+            ))
+        )
+      )
+    )
+  )
+)
+
+(breeze-part "BitBuffer"
+  (ports
+    (sync-port "activate" passive (at 135 32 "buffers.balsa" 0))
+    (port "i" active input (numeric-type #f 1) (at 31 10 "buffers.balsa" 0))
+    (port "o" active output (numeric-type #f 1) (at 32 11 "buffers.balsa" 0))
+  )
+  (attributes
+    (is-procedure)
+    (is-permanent)
+    (at 135 32 "buffers.balsa" 0)
+  )
+  (channels
+    (sync (at 35 2 "buffers.balsa" 3)) ; 1
+    (pull 1 (at 36 3 "buffers.balsa" 3) (name "i")) ; 2
+    (push 1 (at 37 3 "buffers.balsa" 3) (name "o")) ; 3
+    (pull 1 (at 37 8 "buffers.balsa" 3) (name "x")) ; 4
+    (sync (at 37 5 "buffers.balsa" 3)) ; 5
+    (push 1 (at 36 5 "buffers.balsa" 3) (name "x")) ; 6
+    (sync (at 36 5 "buffers.balsa" 3)) ; 7
+    (sync (at 36 10 "buffers.balsa" 3)) ; 8
+  )
+  (components
+    (component "$BrzVariable" (1 1 "x[0..0]" "") (6 (4)) (at 33 7 "buffers.balsa" 0)) ; 0
+    (component "$BrzLoop" () (1 8) (at 35 2 "buffers.balsa" 0)) ; 1
+    (component "$BrzSequence" (2 "T") (8 (7 5)) (at 36 10 "buffers.balsa" 0)) ; 2
+    (component "$BrzFetch" (1 "false") (7 2 6) (at 36 5 "buffers.balsa" 0)) ; 3
+    (component "$BrzFetch" (1 "false") (5 4 3) (at 37 5 "buffers.balsa" 0)) ; 4
+  )
+  (call-contexts
+    (call-context 3 "Buffer-0" (at 135 32 "buffers.balsa" 0) (at 0 0 "" 0) 0)
+  )
+)
+
+(breeze-part "BooleanBuffer"
+  (ports
+    (sync-port "activate" passive (at 136 36 "buffers.balsa" 0))
+    (port "i" active input (named-type "boolean") (at 31 10 "buffers.balsa" 0))
+    (port "o" active output (named-type "boolean") (at 32 11 "buffers.balsa" 0))
+  )
+  (attributes
+    (is-procedure)
+    (is-permanent)
+    (at 136 36 "buffers.balsa" 0)
+  )
+  (channels
+    (sync (at 35 2 "buffers.balsa" 4)) ; 1
+    (pull 1 (at 36 3 "buffers.balsa" 4) (name "i") (type (named-type "boolean"))) ; 2
+    (push 1 (at 37 3 "buffers.balsa" 4) (name "o") (type (named-type "boolean"))) ; 3
+    (pull 1 (at 37 8 "buffers.balsa" 4) (name "x") (type (named-type "boolean"))) ; 4
+    (sync (at 37 5 "buffers.balsa" 4)) ; 5
+    (push 1 (at 36 5 "buffers.balsa" 4) (name "x") (type (named-type "boolean"))) ; 6
+    (sync (at 36 5 "buffers.balsa" 4)) ; 7
+    (sync (at 36 10 "buffers.balsa" 4)) ; 8
+  )
+  (components
+    (component "$BrzVariable" (1 1 "x[0..0]" "") (6 (4)) (at 33 7 "buffers.balsa" 0)) ; 0
+    (component "$BrzLoop" () (1 8) (at 35 2 "buffers.balsa" 0)) ; 1
+    (component "$BrzSequence" (2 "T") (8 (7 5)) (at 36 10 "buffers.balsa" 0)) ; 2
+    (component "$BrzFetch" (1 "false") (7 2 6) (at 36 5 "buffers.balsa" 0)) ; 3
+    (component "$BrzFetch" (1 "false") (5 4 3) (at 37 5 "buffers.balsa" 0)) ; 4
+  )
+  (call-contexts
+    (call-context 4 "Buffer-1" (at 136 36 "buffers.balsa" 0) (at 0 0 "" 0) 0)
+  )
+)
+
+(breeze-part "ByteBuffer"
+  (ports
+    (sync-port "activate" passive (at 137 33 "buffers.balsa" 0))
+    (port "i" active input (numeric-type #f 8) (at 31 10 "buffers.balsa" 0))
+    (port "o" active output (numeric-type #f 8) (at 32 11 "buffers.balsa" 0))
+  )
+  (attributes
+    (is-procedure)
+    (is-permanent)
+    (at 137 33 "buffers.balsa" 0)
+  )
+  (channels
+    (sync (at 35 2 "buffers.balsa" 5)) ; 1
+    (pull 8 (at 36 3 "buffers.balsa" 5) (name "i")) ; 2
+    (push 8 (at 37 3 "buffers.balsa" 5) (name "o")) ; 3
+    (pull 8 (at 37 8 "buffers.balsa" 5) (name "x")) ; 4
+    (sync (at 37 5 "buffers.balsa" 5)) ; 5
+    (push 8 (at 36 5 "buffers.balsa" 5) (name "x")) ; 6
+    (sync (at 36 5 "buffers.balsa" 5)) ; 7
+    (sync (at 36 10 "buffers.balsa" 5)) ; 8
+  )
+  (components
+    (component "$BrzVariable" (8 1 "x[0..7]" "") (6 (4)) (at 33 7 "buffers.balsa" 0)) ; 0
+    (component "$BrzLoop" () (1 8) (at 35 2 "buffers.balsa" 0)) ; 1
+    (component "$BrzSequence" (2 "T") (8 (7 5)) (at 36 10 "buffers.balsa" 0)) ; 2
+    (component "$BrzFetch" (8 "false") (7 2 6) (at 36 5 "buffers.balsa" 0)) ; 3
+    (component "$BrzFetch" (8 "false") (5 4 3) (at 37 5 "buffers.balsa" 0)) ; 4
+  )
+  (call-contexts
+    (call-context 5 "Buffer-2" (at 137 33 "buffers.balsa" 0) (at 0 0 "" 0) 0)
+  )
+)
+
+(breeze-part "NybbleBuffer"
+  (ports
+    (sync-port "activate" passive (at 138 35 "buffers.balsa" 0))
+    (port "i" active input (numeric-type #f 4) (at 31 10 "buffers.balsa" 0))
+    (port "o" active output (numeric-type #f 4) (at 32 11 "buffers.balsa" 0))
+  )
+  (attributes
+    (is-procedure)
+    (is-permanent)
+    (at 138 35 "buffers.balsa" 0)
+  )
+  (channels
+    (sync (at 35 2 "buffers.balsa" 6)) ; 1
+    (pull 4 (at 36 3 "buffers.balsa" 6) (name "i")) ; 2
+    (push 4 (at 37 3 "buffers.balsa" 6) (name "o")) ; 3
+    (pull 4 (at 37 8 "buffers.balsa" 6) (name "x")) ; 4
+    (sync (at 37 5 "buffers.balsa" 6)) ; 5
+    (push 4 (at 36 5 "buffers.balsa" 6) (name "x")) ; 6
+    (sync (at 36 5 "buffers.balsa" 6)) ; 7
+    (sync (at 36 10 "buffers.balsa" 6)) ; 8
+  )
+  (components
+    (component "$BrzVariable" (4 1 "x[0..3]" "") (6 (4)) (at 33 7 "buffers.balsa" 0)) ; 0
+    (component "$BrzLoop" () (1 8) (at 35 2 "buffers.balsa" 0)) ; 1
+    (component "$BrzSequence" (2 "T") (8 (7 5)) (at 36 10 "buffers.balsa" 0)) ; 2
+    (component "$BrzFetch" (4 "false") (7 2 6) (at 36 5 "buffers.balsa" 0)) ; 3
+    (component "$BrzFetch" (4 "false") (5 4 3) (at 37 5 "buffers.balsa" 0)) ; 4
+  )
+  (call-contexts
+    (call-context 6 "Buffer-3" (at 138 35 "buffers.balsa" 0) (at 0 0 "" 0) 0)
+  )
+)
+
+(breeze-part "NibbleBuffer"
+  (ports
+    (sync-port "activate" passive (at 138 35 "buffers.balsa" 0))
+    (port "i" active input (numeric-type #f 4) (at 31 10 "buffers.balsa" 0))
+    (port "o" active output (numeric-type #f 4) (at 32 11 "buffers.balsa" 0))
+  )
+  (attributes
+    (is-procedure)
+    (is-permanent)
+    (at 138 35 "buffers.balsa" 0)
+  )
+  (channels
+    (sync (at 35 2 "buffers.balsa" 6)) ; 1
+    (pull 4 (at 36 3 "buffers.balsa" 6) (name "i")) ; 2
+    (push 4 (at 37 3 "buffers.balsa" 6) (name "o")) ; 3
+    (pull 4 (at 37 8 "buffers.balsa" 6) (name "x")) ; 4
+    (sync (at 37 5 "buffers.balsa" 6)) ; 5
+    (push 4 (at 36 5 "buffers.balsa" 6) (name "x")) ; 6
+    (sync (at 36 5 "buffers.balsa" 6)) ; 7
+    (sync (at 36 10 "buffers.balsa" 6)) ; 8
+  )
+  (components
+    (component "$BrzVariable" (4 1 "x[0..3]" "") (6 (4)) (at 33 7 "buffers.balsa" 0)) ; 0
+    (component "$BrzLoop" () (1 8) (at 35 2 "buffers.balsa" 0)) ; 1
+    (component "$BrzSequence" (2 "T") (8 (7 5)) (at 36 10 "buffers.balsa" 0)) ; 2
+    (component "$BrzFetch" (4 "false") (7 2 6) (at 36 5 "buffers.balsa" 0)) ; 3
+    (component "$BrzFetch" (4 "false") (5 4 3) (at 37 5 "buffers.balsa" 0)) ; 4
+  )
+  (call-contexts
+    (call-context 6 "Buffer-3" (at 138 35 "buffers.balsa" 0) (at 0 0 "" 0) 0)
+  )
+)
+
+(breeze-part "SByteBuffer"
+  (ports
+    (sync-port "activate" passive (at 140 34 "buffers.balsa" 0))
+    (port "i" active input (numeric-type #t 8) (at 31 10 "buffers.balsa" 0))
+    (port "o" active output (numeric-type #t 8) (at 32 11 "buffers.balsa" 0))
+  )
+  (attributes
+    (is-procedure)
+    (is-permanent)
+    (at 140 34 "buffers.balsa" 0)
+  )
+  (channels
+    (sync (at 35 2 "buffers.balsa" 7)) ; 1
+    (pull 8 (at 36 3 "buffers.balsa" 7) (name "i") (type (numeric-type #t 8))) ; 2
+    (push 8 (at 37 3 "buffers.balsa" 7) (name "o") (type (numeric-type #t 8))) ; 3
+    (pull 8 (at 37 8 "buffers.balsa" 7) (name "x") (type (numeric-type #t 8))) ; 4
+    (sync (at 37 5 "buffers.balsa" 7)) ; 5
+    (push 8 (at 36 5 "buffers.balsa" 7) (name "x") (type (numeric-type #t 8))) ; 6
+    (sync (at 36 5 "buffers.balsa" 7)) ; 7
+    (sync (at 36 10 "buffers.balsa" 7)) ; 8
+  )
+  (components
+    (component "$BrzVariable" (8 1 "x[0..7]" "") (6 (4)) (at 33 7 "buffers.balsa" 0)) ; 0
+    (component "$BrzLoop" () (1 8) (at 35 2 "buffers.balsa" 0)) ; 1
+    (component "$BrzSequence" (2 "T") (8 (7 5)) (at 36 10 "buffers.balsa" 0)) ; 2
+    (component "$BrzFetch" (8 "false") (7 2 6) (at 36 5 "buffers.balsa" 0)) ; 3
+    (component "$BrzFetch" (8 "false") (5 4 3) (at 37 5 "buffers.balsa" 0)) ; 4
+  )
+  (call-contexts
+    (call-context 7 "Buffer-4" (at 140 34 "buffers.balsa" 0) (at 0 0 "" 0) 0)
+  )
+)
+
+(breeze-part "SNybbleBuffer"
+  (ports
+    (sync-port "activate" passive (at 141 36 "buffers.balsa" 0))
+    (port "i" active input (numeric-type #t 4) (at 31 10 "buffers.balsa" 0))
+    (port "o" active output (numeric-type #t 4) (at 32 11 "buffers.balsa" 0))
+  )
+  (attributes
+    (is-procedure)
+    (is-permanent)
+    (at 141 36 "buffers.balsa" 0)
+  )
+  (channels
+    (sync (at 35 2 "buffers.balsa" 8)) ; 1
+    (pull 4 (at 36 3 "buffers.balsa" 8) (name "i") (type (numeric-type #t 4))) ; 2
+    (push 4 (at 37 3 "buffers.balsa" 8) (name "o") (type (numeric-type #t 4))) ; 3
+    (pull 4 (at 37 8 "buffers.balsa" 8) (name "x") (type (numeric-type #t 4))) ; 4
+    (sync (at 37 5 "buffers.balsa" 8)) ; 5
+    (push 4 (at 36 5 "buffers.balsa" 8) (name "x") (type (numeric-type #t 4))) ; 6
+    (sync (at 36 5 "buffers.balsa" 8)) ; 7
+    (sync (at 36 10 "buffers.balsa" 8)) ; 8
+  )
+  (components
+    (component "$BrzVariable" (4 1 "x[0..3]" "") (6 (4)) (at 33 7 "buffers.balsa" 0)) ; 0
+    (component "$BrzLoop" () (1 8) (at 35 2 "buffers.balsa" 0)) ; 1
+    (component "$BrzSequence" (2 "T") (8 (7 5)) (at 36 10 "buffers.balsa" 0)) ; 2
+    (component "$BrzFetch" (4 "false") (7 2 6) (at 36 5 "buffers.balsa" 0)) ; 3
+    (component "$BrzFetch" (4 "false") (5 4 3) (at 37 5 "buffers.balsa" 0)) ; 4
+  )
+  (call-contexts
+    (call-context 8 "Buffer-5" (at 141 36 "buffers.balsa" 0) (at 0 0 "" 0) 0)
+  )
+)
+
+(breeze-part "SNibbleBuffer"
+  (ports
+    (sync-port "activate" passive (at 141 36 "buffers.balsa" 0))
+    (port "i" active input (numeric-type #t 4) (at 31 10 "buffers.balsa" 0))
+    (port "o" active output (numeric-type #t 4) (at 32 11 "buffers.balsa" 0))
+  )
+  (attributes
+    (is-procedure)
+    (is-permanent)
+    (at 141 36 "buffers.balsa" 0)
+  )
+  (channels
+    (sync (at 35 2 "buffers.balsa" 8)) ; 1
+    (pull 4 (at 36 3 "buffers.balsa" 8) (name "i") (type (numeric-type #t 4))) ; 2
+    (push 4 (at 37 3 "buffers.balsa" 8) (name "o") (type (numeric-type #t 4))) ; 3
+    (pull 4 (at 37 8 "buffers.balsa" 8) (name "x") (type (numeric-type #t 4))) ; 4
+    (sync (at 37 5 "buffers.balsa" 8)) ; 5
+    (push 4 (at 36 5 "buffers.balsa" 8) (name "x") (type (numeric-type #t 4))) ; 6
+    (sync (at 36 5 "buffers.balsa" 8)) ; 7
+    (sync (at 36 10 "buffers.balsa" 8)) ; 8
+  )
+  (components
+    (component "$BrzVariable" (4 1 "x[0..3]" "") (6 (4)) (at 33 7 "buffers.balsa" 0)) ; 0
+    (component "$BrzLoop" () (1 8) (at 35 2 "buffers.balsa" 0)) ; 1
+    (component "$BrzSequence" (2 "T") (8 (7 5)) (at 36 10 "buffers.balsa" 0)) ; 2
+    (component "$BrzFetch" (4 "false") (7 2 6) (at 36 5 "buffers.balsa" 0)) ; 3
+    (component "$BrzFetch" (4 "false") (5 4 3) (at 37 5 "buffers.balsa" 0)) ; 4
+  )
+  (call-contexts
+    (call-context 8 "Buffer-5" (at 141 36 "buffers.balsa" 0) (at 0 0 "" 0) 0)
+  )
+)
+
+
+;;; EOF

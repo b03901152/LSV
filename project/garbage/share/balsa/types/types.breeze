@@ -1,0 +1,24 @@
+;;; Breeze intermediate file (list format)
+;;; Created: Thu Oct 28 22:17:55 2010
+;;; By: janinl@bluu.cs.man.ac.uk (Linux)
+;;; With balsa-c version: 4.0
+;;; Command: ../../../src/balsa-c/balsa-c -e -I ../../../share -b -i types.balsa 
+
+;;; Imports
+(import "balsa.types.basic")
+;;; Types
+
+;;; Constants
+
+;;; Parts
+(balsa
+  (builtin-function-decl (at 30 1 "types.balsa" 0) "LongestEnumerationElement"
+    (formal-ports (at 30 49 "types.balsa" 0) 
+      (type-param-port (at 30 49 "types.balsa" 0) (idents (at 30 47 "types.balsa" 0) "X"))
+    )
+    (existing-type (at 30 70 "types.balsa" 0) "cardinal")
+  )
+)
+
+
+;;; EOF

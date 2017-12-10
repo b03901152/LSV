@@ -1,0 +1,21 @@
+{
+    "folders":
+    [
+        {
+            "path": "."
+        }
+    ],
+    "SublimeLinter":
+    {
+        "linters":
+        {
+            "clang":
+            {
+                "extra_flags": "-Wall -Wno-unused-function -Wno-unused-variable -Wno-write-strings -Wno-sign-compare -DLIN64 -DSIZEOF_VOID_P=8 -DSIZEOF_LONG=8 -DSIZEOF_INT=4",
+                "include_dirs": [
+                    "${project_folder}/src"
+                ]
+            }
+        }
+    },
+}

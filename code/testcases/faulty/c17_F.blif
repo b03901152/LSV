@@ -1,0 +1,17 @@
+# Benchmark "/users/nianze/benchmarks/iscas85/c17" written by ABC on Tue Dec 13 10:45:58 2016
+.model /users/nianze/benchmarks/iscas85/c17
+.inputs 1 2 3 6 7
+.outputs 22 23
+.names 2 n8
+0 1
+.names 1 3 n9
+11 0
+.names n9 n8 22
+11 0
+.names 3 6 n11
+11 0
+.names n11 7 n12
+11 0
+.names n12 n8 23
+11 0
+.end

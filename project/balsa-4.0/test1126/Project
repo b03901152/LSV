@@ -1,0 +1,18 @@
+;;; Balsa Project file
+;;; Created: Tue Nov 28 12:33:52 2017
+;;; By: yoyo@yoyoChen (Linux)
+;;; With balsa-mgr version: 4.0 (2010-06-09)
+;;; Supplied with Balsa version: 4.0
+
+(balsa-project
+    (name "test1126")
+    (import-path ".")
+    (simulation-system "breezesim")
+    (files
+        "buffer1a"
+        "count16a"
+        "merga"
+        "test"
+        "test2"
+    )
+)

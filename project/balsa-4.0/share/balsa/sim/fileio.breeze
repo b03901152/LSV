@@ -1,0 +1,110 @@
+;;; Breeze intermediate file (list format)
+;;; Created: Sun Nov 26 16:49:28 2017
+;;; By: root@yoyoChen (Linux)
+;;; With balsa-c version: 4.0
+;;; Command: ../../../src/balsa-c/balsa-c -e -I ../../../share -b -i fileio.balsa 
+
+;;; Imports
+;;; Types
+
+(type "File" (builtin-type))
+(type "FileMode" (enumeration-type #f 3 ("read" 0) ("write" 1) ("writeUnbuffered" 2) ("writeLineBuffered" 3)))
+;;; Constants
+
+;;; Parts
+(breeze-part "FileOpen"
+  (ports
+    (port "activate" passive output (named-type "File") (at 35 1 "fileio.balsa" 0))
+    (port "fileName" active input (named-type "String"))
+    (port "mode" active input (named-type "FileMode"))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 35 1 "fileio.balsa" 0)
+  )
+  (channels
+    (pull 64 (at 35 1 "fileio.balsa" 0) (type (named-type "String"))) ; 1
+    (pull 3 (at 35 1 "fileio.balsa" 0) (type (named-type "FileMode"))) ; 2
+  )
+  (components)
+)
+
+(breeze-part "FileReadLine"
+  (ports
+    (port "activate" passive output (named-type "String") (at 38 1 "fileio.balsa" 0))
+    (port "file" active input (named-type "File"))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 38 1 "fileio.balsa" 0)
+  )
+  (channels
+    (pull 64 (at 38 1 "fileio.balsa" 0) (type (named-type "File"))) ; 1
+  )
+  (components)
+)
+
+(breeze-part "FileReadLine_withRetry"
+  (ports
+    (port "activate" passive output (named-type "String") (at 41 1 "fileio.balsa" 0))
+    (port "file" active input (named-type "File"))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 41 1 "fileio.balsa" 0)
+  )
+  (channels
+    (pull 64 (at 41 1 "fileio.balsa" 0) (type (named-type "File"))) ; 1
+  )
+  (components)
+)
+
+(breeze-part "FileWrite"
+  (ports
+    (port "activate" passive output (named-type "File") (at 44 1 "fileio.balsa" 0))
+    (port "file" active input (named-type "File"))
+    (port "string" active input (named-type "String"))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 44 1 "fileio.balsa" 0)
+  )
+  (channels
+    (pull 64 (at 44 1 "fileio.balsa" 0) (type (named-type "File"))) ; 1
+    (pull 64 (at 44 1 "fileio.balsa" 0) (type (named-type "String"))) ; 2
+  )
+  (components)
+)
+
+(breeze-part "FileEOF"
+  (ports
+    (port "activate" passive output (numeric-type #f 1) (at 47 1 "fileio.balsa" 0))
+    (port "file" active input (named-type "File"))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 47 1 "fileio.balsa" 0)
+  )
+  (channels
+    (pull 64 (at 47 1 "fileio.balsa" 0) (type (named-type "File"))) ; 1
+  )
+  (components)
+)
+
+(breeze-part "FileClose"
+  (ports
+    (port "activate" passive output (named-type "File") (at 50 1 "fileio.balsa" 0))
+    (port "file" active input (named-type "File"))
+  )
+  (attributes
+    (is-builtin-function)
+    (at 50 1 "fileio.balsa" 0)
+  )
+  (channels
+    (pull 64 (at 50 1 "fileio.balsa" 0) (type (named-type "File"))) ; 1
+  )
+  (components)
+)
+
+
+;;; EOF

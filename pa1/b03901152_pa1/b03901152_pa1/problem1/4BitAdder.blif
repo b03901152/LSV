@@ -1,0 +1,24 @@
+.model 4bitadder
+.inputs A3 A2 A1 A0 B3 B2 B1 B0
+.outputs S4 S3 S2 S1 S0
+.subckt adder a=A0 b=B0 cin=CIN s=S0 cout=C0
+.subckt adder a=A1 b=B1 cin=C0  s=S1 cout=C1
+.subckt adder a=A2 b=B2 cin=C1  s=S2 cout=C2
+.subckt adder a=A3 b=B3 cin=C2  s=S3 cout=S4
+.names CIN
+.end
+
+.model adder
+.inputs a b cin
+.outputs s cout
+.names a b k
+10 1
+01 1
+.names k cin s
+10 1
+01 1
+.names a b cin cout
+11- 1
+1-1 1
+-11 1
+.end

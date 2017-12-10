@@ -1,0 +1,5 @@
+/home/yoyo/Desktop/LSV/pa2/LSV_pa/CMakeFiles/edit_cache.dir
+/home/yoyo/Desktop/LSV/pa2/LSV_pa/CMakeFiles/libabc-pic.dir
+/home/yoyo/Desktop/LSV/pa2/LSV_pa/CMakeFiles/rebuild_cache.dir
+/home/yoyo/Desktop/LSV/pa2/LSV_pa/CMakeFiles/abc.dir
+/home/yoyo/Desktop/LSV/pa2/LSV_pa/CMakeFiles/libabc.dir

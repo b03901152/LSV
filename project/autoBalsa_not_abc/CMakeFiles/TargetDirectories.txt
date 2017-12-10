@@ -1,0 +1,3 @@
+/home/yoyo/Desktop/LSV/project/autoBalsa/CMakeFiles/rebuild_cache.dir
+/home/yoyo/Desktop/LSV/project/autoBalsa/CMakeFiles/BalsaTransform.dir
+/home/yoyo/Desktop/LSV/project/autoBalsa/CMakeFiles/edit_cache.dir

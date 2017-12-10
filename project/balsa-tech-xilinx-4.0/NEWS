@@ -1,0 +1,2 @@
+Verilog netlist now produced by default. A style option 'cad' can be used to
+select output with capital letters for Xilinx ISE or small letters for Cadence.

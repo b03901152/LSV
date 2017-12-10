@@ -1,0 +1,50 @@
+;;; Breeze intermediate file (list format)
+;;; Created: Tue Nov 28 11:42:15 2017
+;;; By: yoyo@yoyoChen (Linux)
+;;; With balsa-c version: 4.0
+;;; Command: balsa-c -b -I . buffer1a 
+
+;;; Imports
+(import "balsa.types.builtin")
+(import "balsa.types.synthesis")
+(import "balsa.types.basic")
+;;; Types
+
+;;; Constants
+
+;;; Parts
+(breeze-part "buffer1"
+  (ports
+    (sync-port "activate" passive (at 2 1 "buffer1a.balsa" 0))
+    (port "i" active input (numeric-type #f 8) (at 2 28 "buffer1a.balsa" 0))
+    (port "o" active output (numeric-type #f 8) (at 2 45 "buffer1a.balsa" 0))
+  )
+  (attributes
+    (is-procedure)
+    (is-permanent)
+    (at 2 1 "buffer1a.balsa" 0)
+  )
+  (channels
+    (sync (at 5 2 "buffer1a.balsa" 1)) ; 1
+    (pull 8 (at 6 2 "buffer1a.balsa" 1) (name "i")) ; 2
+    (push 8 (at 8 2 "buffer1a.balsa" 1) (name "o")) ; 3
+    (pull 8 (at 8 7 "buffer1a.balsa" 1) (name "x")) ; 4
+    (sync (at 8 4 "buffer1a.balsa" 1)) ; 5
+    (push 8 (at 6 4 "buffer1a.balsa" 1) (name "x")) ; 6
+    (sync (at 6 4 "buffer1a.balsa" 1)) ; 7
+    (sync (at 7 2 "buffer1a.balsa" 1)) ; 8
+  )
+  (components
+    (component "$BrzVariable" (8 1 "x[0..7]" "") (6 (4)) (at 3 2 "buffer1a.balsa" 0)) ; 0
+    (component "$BrzLoop" () (1 8) (at 5 2 "buffer1a.balsa" 0)) ; 1
+    (component "$BrzSequence" (2 "T") (8 (7 5)) (at 7 2 "buffer1a.balsa" 0)) ; 2
+    (component "$BrzFetch" (8 "false") (7 2 6) (at 6 4 "buffer1a.balsa" 0)) ; 3
+    (component "$BrzFetch" (8 "false") (5 4 3) (at 8 4 "buffer1a.balsa" 0)) ; 4
+  )
+  (call-contexts
+    (call-context 1 "buffer1" (at 2 1 "buffer1a.balsa" 0) (at 0 0 "" 0) 0)
+  )
+)
+
+
+;;; EOF

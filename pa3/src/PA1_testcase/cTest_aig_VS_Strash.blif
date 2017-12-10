@@ -1,0 +1,13 @@
+# Benchmark "iscas85/cTest_aig_VS_Strash" written by ABC on Sun Sep 17 17:05:10 2017
+.model iscas85/cTest_aig_VS_Strash
+.inputs 1 2 3
+.outputs 9
+.names 1 2 4
+11 1
+.names 1 3 5
+11 1
+.names 2 3 6
+11 1
+.names 4 5 6 9
+000 0
+.end
